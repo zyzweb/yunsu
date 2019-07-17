@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>全局自定义模板</title>
+</head>
+<body>
+<!--css配置-->
+<style>
+</style>
+
+<!--RootToolbar配置-->
+<section id="toolbar">
+</section>
+
+<!--Template配置 key是唯一标识，请不要修改已保证页面正常运行-->
+<section type="template" id="template">
+<a-row>
+    <a-col>
+        <a-title key="2031563205120978" data-name="出差申请"></a-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-create-by key="creater" data-name="创建人"></a-create-by>
+    </a-col>
+    <a-col>
+        <a-created-time key="createdTime" data-name="创建时间"></a-created-time>
+    </a-col>
+    <a-col>
+        <a-sequence-no key="sequenceNo" data-name="单据号"></a-sequence-no>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-group-title key="2001563205120978" data-name="业务标题"></a-group-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-textarea key="LongText1563205202684" data-name="出差事由"></a-textarea>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-date key="Date1563205238818" data-name="开始日期"></a-date>
+    </a-col>
+    <a-col>
+        <a-date key="Date1563205250767" data-name="结束日期"></a-date>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-textarea key="LongText1563205274886" data-name="目的地"></a-textarea>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-textarea key="LongText1563205291271" data-name="审批意见"></a-textarea>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-user-selector key="StaffSelector1563205352741" data-name="人员单选" data-dept-visible="user"></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-textarea key="LongText1563205527494" data-name="长文本"></a-textarea>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-comment key="ApprovalOpinion1563205531663" data-name="审批意见"></a-comment>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-signature key="Attachment1563205701318" data-name="手写签名"></a-signature>
+    </a-col>
+</a-row>
+</section>
+
+<!--自定义事件配置-->
+<script id="customScript">
+    (function(form){
+        /**
+         * 用户自定义JS区域
+         */
+        /**
+         * 事件绑定，form.on
+         * @param eventType 事件类型
+         * @params function 事件
+         * @param  cover    true, false 是否覆盖root的生命周期 默认不覆盖 
+         */
+        //数据加载后，渲染之前，this为window
+        form.on('onLoad',function(data, dataPermission){},'cover');
+        //渲染完成后
+        form.on('onRendered',function(data){});
+        //内置校验完成后，返回false阻止提交
+        form.on('onValidate',function(action,data){});
+        //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+        form.on('onPreAction',function(action,data){});
+        //自定义按钮执行
+        form.on('onCustomAction',function(action,data){});
+        //操作完成后执行
+        form.on('onActionDone',function(action,data,httpRes){});
+    })
+</script>
+<script src="http://47.106.64.158/admin/config.js" class="templateScript"></script>
+<script src="http://47.106.64.158/admin/js/template.js" class="templateScript"></script>
+</body>
+</html>
