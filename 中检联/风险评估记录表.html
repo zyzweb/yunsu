@@ -101,7 +101,7 @@
                 <a-text key="isKey" width="150" data-name="关键项" data-name_i18n='{"en":"关键项"}' data-default-value=""></a-text>
                 <a-text key="lawBasis" width="150" data-name="法规依据" data-name_i18n='{"en":"法规依据"}' data-default-value=""></a-text>
                 <a-text key="historyAssess" width="150" data-name="历史评价" data-name_i18n='{"en":"历史评价"}' data-default-value=""></a-text>
-                <a-image key="historyImg" width="200" data-name="历史评价照片" data-name_i18n='{"en":"历史评价照片"}'></a-image>
+                <a-text key="historyImg" width="150" data-name="历史评价照片"></a-text>
                 <a-text key="historyInsp" width="150" data-name="历史评价人员" data-name_i18n='{"en":"历史评价人员"}' data-default-value=""></a-text>
                 <a-text key="isRect" width="150" data-name="是否整改" data-name_i18n='{"en":"是否整改"}' data-default-value=""></a-text>
                 <a-attachment key="rectImg" width="200" data-name="整改后照片" data-name_i18n='{"en":"整改后照片"}'></a-attachment>
@@ -184,7 +184,7 @@
                         if(itemId[index1] === data.data[index2].itemDtId) {
                           self.risk_assess_dt.rows[index1].children.historyAssess.value = item2.historyAssess
                           self.risk_assess_dt.rows[index1].children.historyInsp.value = item2.historyInsp
-                          // self.risk_assess_dt.rows[index1].children.historyImg.value = item2.historyAtt
+                          
                           if(item2.historyAtt != null) {
                             self.risk_assess_dt.rows[index1].children.historyImg.value = {
                               refId:item2.historyAtt.refId,
@@ -195,30 +195,30 @@
                           }
                           // self.risk_assess_dt.rows[index1].children.historyImg.value.mimeType = item2.historyAtt.mimeType
                           // self.risk_assess_dt.rows[index1].children.historyImg.value.fileSize = item2.historyAtt.fileSize
+                          var historyEle = photos[index1].children[0].children[12] //历史记录照片
+                          while(historyEle.hasChildNodes()) { //当historyEle下还存在子节点时 循环继续
+                            historyEle.removeChild(historyEle.firstChild);
+                          }
+                          if(data.data[index2].historyAtt !== null) { //有照片时候请求,没有为空
+                          self.risk_assess_dt.rows[index1].children.historyImg.value = item2.historyAtt.refId
+                            var img = document.createElement('img') //创建img标签
+                            var src = document.createAttribute('src')
+                            src.value = 'http://47.106.77.226:8080/api/aliyun/download?refId=' + data.data[index2].historyAtt.refId
+                            img.setAttributeNode(src)
+                            var width = document.createAttribute('width')
+                            width.value = '53px'
+                            img.setAttributeNode(width)
+                            var height = document.createAttribute('height')
+                            height.value = '53px'
+                            img.setAttributeNode(height)
+                            historyEle.appendChild(img);
+                          }
                         }
                     })
                   })
                   console.log('历史记录',self.risk_assess_dt.value)
                 
-                // photos.forEach(function(item,index) {
-                //   var historyEle = photos[index].children[0].children[12] //历史记录照片
-                //   while(historyEle.hasChildNodes()) { //当historyEle下还存在子节点时 循环继续
-                //     historyEle.removeChild(historyEle.firstChild);
-                //   }
-                //   if(data.data[index].historyAtt !== null) { //有照片时候请求,没有为空
-                //     var img = document.createElement('img') //创建img标签
-                //     var src = document.createAttribute('src')
-                //     src.value = 'http://47.106.77.226:8080/api/aliyun/download?refId=' + data.data[index].historyAtt.refId
-                //     img.setAttributeNode(src)
-                //     var width = document.createAttribute('width')
-                //     width.value = '53px'
-                //     img.setAttributeNode(width)
-                //     var height = document.createAttribute('height')
-                //     height.value = '53px'
-                //     img.setAttributeNode(height)
-                //     historyEle.appendChild(img);
-                //   }
-                // })
+              
                 }
               });
           });
