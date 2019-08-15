@@ -1,0 +1,304 @@
+<style></style>
+
+<section id="toolbar"></section>
+
+<section type="template" id="template">
+<a-row>
+    <a-col>
+        <a-title key="2031564988341939" data-name="风险评估记录表" data-name_i18n='{"en":"风险评估记录表"}'></a-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-create-by key="creater" data-name="创建人"></a-create-by>
+    </a-col>
+    <a-col>
+        <a-created-time key="createdTime" data-name="创建时间"></a-created-time>
+    </a-col>
+    <a-col>
+        <a-sequence-no key="sequenceNo" data-name="单据号"></a-sequence-no>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-group-title key="2001564988341939" data-name="业务标题"></a-group-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="examinedOrg" data-name="受检单位" data-query-code="examined_check_item" data-schema-code="examined_check_item" data-mappings="contactWay:{examinedContact};check_item_dt:{risk_assess_dt}"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-text key="witness" data-name="见证人"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="examinedContact" data-name="受检单位联系方式"></a-text>
+    </a-col>
+    <a-col>
+        <a-date key="recordDate" data-name="日期"></a-date>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="entrustOrg" data-name="委托单位" data-query-code="entrust_org" data-schema-code="entrust_org" data-mappings="address:{entrustAddr}"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-text key="canteen" data-name="餐厅或食堂名称"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="inspector" data-name="检验员"></a-text>
+    </a-col>
+    <a-col>
+        <a-location key="entrustAddr" data-name="地址"></a-location>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="supervisor" data-name="监督员"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="operateArea" data-name="加工经营场所面积"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="restType" data-name="供餐场所类型"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="recordNo" data-name="记录编号"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-description key="2021564988825049" data-name="备注：易整改（文件证照制度整理、标识标签制作、人员管理）,较易整改（服装购置、器具购置、小型设备购置、小规模施工）,难整改（较大规模施工、大型设备购置）"></a-description>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="orderNo" data-name="订单编号"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="checkMethod" data-name="检查方法"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-sheet key="risk_assess_dt" data-name="风险评估详情" data-name_i18n='{"en":"风险评估详情"}'>
+            <a-columns>
+                <a-text key="itemDtId" width="150" data-name="检查项目详情id" data-name_i18n='{"en":"检查项目详情id"}' data-default-value=""></a-text>
+                <a-text key="checkSort" width="150" data-name="检查类别" data-name_i18n='{"en":"检查类别"}' data-default-value=""></a-text>
+                <a-textarea key="firstCheckItem" width="300" data-name="一级检查项目" data-name_i18n='{"en":"一级检查项目"}' data-default-value=""></a-textarea>
+                <a-textarea key="secondCheckItem" width="300" data-name="二级检查项目" data-name_i18n='{"en":"二级检查项目"}' data-default-value=""></a-textarea>
+                <a-image key="siteImg" width="200" data-name="现场照片" data-name_i18n='{"en":"现场照片"}'></a-image>
+                <a-dropdown key="assess" width="150" data-name="评价" data-name_i18n='{"en":"评价"}' data-default-value="N" data-options="N;Y;NA"></a-dropdown>
+                <a-text key="dangerPlace" width="150" data-name="隐患发现地点" data-name_i18n='{"en":"隐患发现地点"}' data-default-value=""></a-text>
+                <a-textarea key="incompatibleDesc" width="300" data-name="不符合项描述" data-name_i18n='{"en":"不符合项描述"}' data-default-value=""></a-textarea>
+                <a-textarea key="rectSuggest" width="300" data-name="整改建议" data-name_i18n='{"en":"整改建议"}' data-default-value=""></a-textarea>
+                <a-text key="isKey" width="150" data-name="关键项" data-name_i18n='{"en":"关键项"}' data-default-value=""></a-text>
+                <a-text key="lawBasis" width="150" data-name="法规依据" data-name_i18n='{"en":"法规依据"}' data-default-value=""></a-text>
+                <a-text key="historyAssess" width="150" data-name="历史评价" data-name_i18n='{"en":"历史评价"}' data-default-value=""></a-text>
+                <a-image key="historyImg" width="200" data-name="历史评价照片" data-name_i18n='{"en":"历史评价照片"}'></a-image>
+                <a-text key="historyInsp" width="150" data-name="历史评价人员" data-name_i18n='{"en":"历史评价人员"}' data-default-value=""></a-text>
+                <a-text key="isRect" width="150" data-name="是否整改" data-name_i18n='{"en":"是否整改"}' data-default-value=""></a-text>
+                <a-attachment key="rectImg" width="200" data-name="整改后照片" data-name_i18n='{"en":"整改后照片"}'></a-attachment>
+                <a-text key="remark" width="150" data-name="备注" data-name_i18n='{"en":"备注"}' data-default-value=""></a-text>
+            </a-columns>
+        </a-sheet>
+    </a-col>
+</a-row>
+</section>
+
+<script id="customScript">
+  (function(form) {
+    /**
+     * 用户自定义JS区域
+     */
+    /**
+     * 事件绑定，form.on
+     * @param eventType 事件类型
+     * @params function 事件
+     * @param  cover    true, false 是否覆盖root的生命周期 默认不覆盖
+     */
+    //数据加载后，渲染之前，this为window
+    var itemId = []; //itemid的值
+    var indexs = "";  //第几行的值改变了(评价)
+    var indexs1 = ''  //第几行的值改变了(不符合项描述)
+    var indexs2 = ''  //第几行的值改变了(整改建议)
+    var old = []
+    form.on("onLoad", function(data, dataPermission) {}, "cover");
+    //渲染完成后
+    form.on("onRendered", function(data) {
+      var self = this;
+      //监听受检单位值的变化
+      self.examinedOrg.valueChange.subscribe(changed => {
+        //替代系统发送list请求取到itemid
+        console.table({ 子表: self.risk_assess_dt.value });
+        axios
+          .post("/api/runtime/query/list", {
+            filters: [],
+            mobile: false,
+            page: 0,
+            queryCode: "examined_check_item",
+            schemaCode: "examined_check_item",
+            size: 20,
+            options: {
+              customDisplayColumns: ["contactWay", "check_item_dt"],
+              queryDisplayType: "2"
+            }
+          })
+          .then(function(data) {
+            // console.table({list表格:data.data.content[0].data.check_item_dt})
+            var arr = data.data.content[0].data.check_item_dt;
+
+            arr.forEach(function(item, index) {
+              itemId[index] = item.id;
+            });
+            old = self.risk_assess_dt.value; //系统自带的受检单位信息
+            console.table({旧数据1:old})
+            self.risk_assess_dt.rows.forEach(function(item,index) {
+              item.children.incompatibleDesc.value = ''
+              item.children.rectSuggest.value = ''
+              item.children.assess.value = null
+              item.children.itemDtId.value = itemId[index]
+            })
+            
+            
+            var id = changed.value.id;
+            //把list请求放在最前面
+            axios
+              .get("/api/sino/cans/queryHistoryAssess?examinedCheckId=" + id)
+              .then(function(data) {
+                //接口返回的历史数据(3个)
+                if(data.data != undefined) {
+                  var photos = [...document.getElementsByClassName('sheet__cols')]
+                  photos.pop()
+                  photos.shift()
+                  console.table({photos:photos})
+                  // console.table({返回的数据: data.data})
+                  itemId.forEach(function(item1,index1) {
+                      data.data.forEach(function(item2,index2) {
+                        if(itemId[index1] === data.data[index2].itemDtId) {
+                          self.risk_assess_dt.rows[index1].children.historyAssess.value = item2.historyAssess
+                          self.risk_assess_dt.rows[index1].children.historyInsp.value = item2.historyInsp
+                          // self.risk_assess_dt.rows[index1].children.historyImg.value = item2.historyAtt
+                          if(item2.historyAtt != null) {
+                            self.risk_assess_dt.rows[index1].children.historyImg.value = {
+                              refId:item2.historyAtt.refId,
+                              fileSize:item2.historyAtt.fileSize,
+                              name:item2.historyAtt.name,
+                              mimeType:item2.historyAtt.mimeType
+                              }
+                          }
+                          // self.risk_assess_dt.rows[index1].children.historyImg.value.mimeType = item2.historyAtt.mimeType
+                          // self.risk_assess_dt.rows[index1].children.historyImg.value.fileSize = item2.historyAtt.fileSize
+                        }
+                    })
+                  })
+                  console.log('历史记录',self.risk_assess_dt.value)
+                
+                // photos.forEach(function(item,index) {
+                //   var historyEle = photos[index].children[0].children[12] //历史记录照片
+                //   while(historyEle.hasChildNodes()) { //当historyEle下还存在子节点时 循环继续
+                //     historyEle.removeChild(historyEle.firstChild);
+                //   }
+                //   if(data.data[index].historyAtt !== null) { //有照片时候请求,没有为空
+                //     var img = document.createElement('img') //创建img标签
+                //     var src = document.createAttribute('src')
+                //     src.value = 'http://47.106.77.226:8080/api/aliyun/download?refId=' + data.data[index].historyAtt.refId
+                //     img.setAttributeNode(src)
+                //     var width = document.createAttribute('width')
+                //     width.value = '53px'
+                //     img.setAttributeNode(width)
+                //     var height = document.createAttribute('height')
+                //     height.value = '53px'
+                //     img.setAttributeNode(height)
+                //     historyEle.appendChild(img);
+                //   }
+                // })
+                }
+              });
+          });
+
+
+        self.risk_assess_dt
+          .getColumnValueChange("assess") //监听评价的值变化
+          .subscribe(changed => {
+            //判断是哪一行发生了改变
+            changed.value.forEach(function(item,index) {
+              if(item != changed.oldValue[index])
+              indexs = index
+            })
+            
+
+            //判断当为N时进行渲染,其他隐藏
+            if (self.risk_assess_dt.value[indexs].assess == "N") {
+              self.risk_assess_dt.rows[indexs].children.incompatibleDesc.value =
+                old[indexs].incompatibleDesc;
+              self.risk_assess_dt.rows[indexs].children.rectSuggest.value =
+              old[indexs].rectSuggest;
+            } else {
+              self.risk_assess_dt.rows[indexs].children.incompatibleDesc.value =
+                "";
+              self.risk_assess_dt.rows[indexs].children.rectSuggest.value = "";
+            }
+          })
+
+
+          self.risk_assess_dt
+          .getColumnValueChange("incompatibleDesc").subscribe(changed => {
+            //判断哪行发生了改变
+            changed.value.forEach(function(item,index) {
+              if(item != changed.oldValue[index]) {
+                indexs1 = index;
+              }
+            })
+              //只要改变之后不合符项描述不为空,这代表用户在手动更改
+              if(changed.value[indexs1] != '') {
+                  old[indexs1].incompatibleDesc = changed.value[indexs1]
+              }
+          })
+
+
+          self.risk_assess_dt
+          .getColumnValueChange("rectSuggest").subscribe(changed => {
+            //判断哪行发生了改变
+            changed.value.forEach(function(item,index) {
+              if(item != changed.oldValue[index]) {
+                indexs2 = index;
+              }
+            })
+
+              //只要改变之后不合符项描述不为空,这代表用户在手动更改
+              if(changed.value[indexs2] != '') {
+                  old[indexs2].rectSuggest = changed.value[indexs2]
+              }
+          })
+
+      });
+
+      var objDeepCopy = function(source) {
+        var sourceCopy = source instanceof Array ? [] : {};
+        for (var item in source) {
+          sourceCopy[item] =
+            typeof source[item] === "object"
+              ? objDeepCopy(source[item])
+              : source[item];
+        }
+        return sourceCopy;
+      };
+    })
+    //内置校验完成后，返回false阻止提交
+    form.on("onValidate", function(action, data) {});
+    //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+    form.on("onPreAction", function(action, data) {
+    });
+    //自定义按钮执行
+    form.on("onCustomAction", function(action, data) {});
+    //操作完成后执行
+    form.on("onActionDone", function(action, data, httpRes) {});
+  });
+</script>
