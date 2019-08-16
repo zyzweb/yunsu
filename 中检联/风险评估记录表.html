@@ -89,28 +89,30 @@
     <a-col>
         <a-sheet key="risk_assess_dt" data-name="风险评估详情" data-name_i18n='{"en":"风险评估详情"}'>
             <a-columns>
-                <a-text key="itemDtId" width="150" data-name="检查项目详情id" data-name_i18n='{"en":"检查项目详情id"}' data-default-value=""></a-text>
-                <a-text key="checkSort" width="150" data-name="检查类别" data-name_i18n='{"en":"检查类别"}' data-default-value=""></a-text>
-                <a-textarea key="firstCheckItem" width="300" data-name="一级检查项目" data-name_i18n='{"en":"一级检查项目"}' data-default-value=""></a-textarea>
-                <a-textarea key="secondCheckItem" width="300" data-name="二级检查项目" data-name_i18n='{"en":"二级检查项目"}' data-default-value=""></a-textarea>
+                <a-text key="itemDtId" width="300" data-name="检查项目详情id" data-name_i18n='{"en":"检查项目详情id"}'></a-text>
+                <a-text key="checkSort" width="150" data-name="检查类别" data-name_i18n='{"en":"检查类别"}'></a-text>
+                <a-textarea key="firstCheckItem" width="300" data-name="一级检查项目" data-name_i18n='{"en":"一级检查项目"}'></a-textarea>
+                <a-textarea key="secondCheckItem" width="300" data-name="二级检查项目" data-name_i18n='{"en":"二级检查项目"}'></a-textarea>
                 <a-image key="siteImg" width="200" data-name="现场照片" data-name_i18n='{"en":"现场照片"}'></a-image>
-                <a-dropdown key="assess" width="150" data-name="评价" data-name_i18n='{"en":"评价"}' data-default-value="N" data-options="N;Y;NA"></a-dropdown>
-                <a-text key="dangerPlace" width="150" data-name="隐患发现地点" data-name_i18n='{"en":"隐患发现地点"}' data-default-value=""></a-text>
-                <a-textarea key="incompatibleDesc" width="300" data-name="不符合项描述" data-name_i18n='{"en":"不符合项描述"}' data-default-value=""></a-textarea>
-                <a-textarea key="rectSuggest" width="300" data-name="整改建议" data-name_i18n='{"en":"整改建议"}' data-default-value=""></a-textarea>
-                <a-text key="isKey" width="150" data-name="关键项" data-name_i18n='{"en":"关键项"}' data-default-value=""></a-text>
-                <a-text key="lawBasis" width="150" data-name="法规依据" data-name_i18n='{"en":"法规依据"}' data-default-value=""></a-text>
-                <a-text key="historyAssess" width="150" data-name="历史评价" data-name_i18n='{"en":"历史评价"}' data-default-value=""></a-text>
+                <a-dropdown key="assess" width="150" data-name="评价" data-name_i18n='{"en":"评价"}' data-default-value="N" data-options="N;Y;NY"></a-dropdown>
+                <a-text key="dangerPlace" width="150" data-name="隐患发现地点" data-name_i18n='{"en":"隐患发现地点"}'></a-text>
+                <a-textarea key="incompatibleDesc" width="300" data-name="不符合项描述" data-name_i18n='{"en":"不符合项描述"}'></a-textarea>
+                <a-textarea key="rectSuggest" width="300" data-name="整改建议" data-name_i18n='{"en":"整改建议"}'></a-textarea>
+                <a-text key="isKey" width="150" data-name="关键项" data-name_i18n='{"en":"关键项"}'></a-text>
+                <a-text key="lawBasis" width="150" data-name="法规依据" data-name_i18n='{"en":"法规依据"}'></a-text>
+                <a-text key="historyAssess" width="150" data-name="历史评价" data-name_i18n='{"en":"历史评价"}'></a-text>
                 <a-text key="historyImg" width="150" data-name="历史评价照片"></a-text>
-                <a-text key="historyInsp" width="150" data-name="历史评价人员" data-name_i18n='{"en":"历史评价人员"}' data-default-value=""></a-text>
-                <a-text key="isRect" width="150" data-name="是否整改" data-name_i18n='{"en":"是否整改"}' data-default-value=""></a-text>
+                <a-text key="historyInsp" width="150" data-name="历史评价人员" data-name_i18n='{"en":"历史评价人员"}'></a-text>
+                <a-text key="isRect" width="150" data-name="是否整改" data-name_i18n='{"en":"是否整改"}'></a-text>
                 <a-attachment key="rectImg" width="200" data-name="整改后照片" data-name_i18n='{"en":"整改后照片"}'></a-attachment>
-                <a-text key="remark" width="150" data-name="备注" data-name_i18n='{"en":"备注"}' data-default-value=""></a-text>
+                <a-text key="remark" width="150" data-name="备注" data-name_i18n='{"en":"备注"}'></a-text>
             </a-columns>
         </a-sheet>
     </a-col>
 </a-row>
 </section>
+
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
 
 <script id="customScript">
   (function(form) {
@@ -133,6 +135,33 @@
     //渲染完成后
     form.on("onRendered", function(data) {
       var self = this;
+      if(self.$router.app._route.query.objectId && self.examinedOrg.value.id) {
+        var photos = [...document.getElementsByClassName('sheet__cols')]
+        photos.pop()
+        photos.shift()
+        photos.forEach((item,index) => {
+          var historyEle = photos[index].children[0].children[12] //历史记录照片
+          while(historyEle.hasChildNodes()) { //当historyEle下还存在子节点时 循环继续
+            historyEle.removeChild(historyEle.firstChild);
+          }
+          if(self.risk_assess_dt.value[index].historyImg != null){
+            var img = document.createElement('img') //创建img标签
+            var src = document.createAttribute('src')
+            src.value = 'http://47.106.77.226:8080/api/aliyun/download?refId=' + self.risk_assess_dt.value[index].historyImg
+            img.setAttributeNode(src)
+            var width = document.createAttribute('width')
+            width.value = '53px'
+            img.setAttributeNode(width)
+            var height = document.createAttribute('height')
+            height.value = '53px'
+            img.setAttributeNode(height)
+            historyEle.appendChild(img);
+          }
+        })
+      }
+      console.log(self.risk_assess_dt.value)
+      
+      
       //监听受检单位值的变化
       self.examinedOrg.valueChange.subscribe(changed => {
         //替代系统发送list请求取到itemid
@@ -153,7 +182,6 @@
           .then(function(data) {
             // console.table({list表格:data.data.content[0].data.check_item_dt})
             var arr = data.data.content[0].data.check_item_dt;
-
             arr.forEach(function(item, index) {
               itemId[index] = item.id;
             });
@@ -184,23 +212,12 @@
                         if(itemId[index1] === data.data[index2].itemDtId) {
                           self.risk_assess_dt.rows[index1].children.historyAssess.value = item2.historyAssess
                           self.risk_assess_dt.rows[index1].children.historyInsp.value = item2.historyInsp
-                          
-                          if(item2.historyAtt != null) {
-                            self.risk_assess_dt.rows[index1].children.historyImg.value = {
-                              refId:item2.historyAtt.refId,
-                              fileSize:item2.historyAtt.fileSize,
-                              name:item2.historyAtt.name,
-                              mimeType:item2.historyAtt.mimeType
-                              }
-                          }
-                          // self.risk_assess_dt.rows[index1].children.historyImg.value.mimeType = item2.historyAtt.mimeType
-                          // self.risk_assess_dt.rows[index1].children.historyImg.value.fileSize = item2.historyAtt.fileSize
                           var historyEle = photos[index1].children[0].children[12] //历史记录照片
                           while(historyEle.hasChildNodes()) { //当historyEle下还存在子节点时 循环继续
                             historyEle.removeChild(historyEle.firstChild);
                           }
                           if(data.data[index2].historyAtt !== null) { //有照片时候请求,没有为空
-                          self.risk_assess_dt.rows[index1].children.historyImg.value = item2.historyAtt.refId
+                           self.risk_assess_dt.rows[index1].children.historyImg.value = item2.historyAtt.refId
                             var img = document.createElement('img') //创建img标签
                             var src = document.createAttribute('src')
                             src.value = 'http://47.106.77.226:8080/api/aliyun/download?refId=' + data.data[index2].historyAtt.refId
@@ -222,8 +239,6 @@
                 }
               });
           });
-
-
         self.risk_assess_dt
           .getColumnValueChange("assess") //监听评价的值变化
           .subscribe(changed => {
@@ -233,7 +248,6 @@
               indexs = index
             })
             
-
             //判断当为N时进行渲染,其他隐藏
             if (self.risk_assess_dt.value[indexs].assess == "N") {
               self.risk_assess_dt.rows[indexs].children.incompatibleDesc.value =
@@ -246,8 +260,6 @@
               self.risk_assess_dt.rows[indexs].children.rectSuggest.value = "";
             }
           })
-
-
           self.risk_assess_dt
           .getColumnValueChange("incompatibleDesc").subscribe(changed => {
             //判断哪行发生了改变
@@ -261,8 +273,6 @@
                   old[indexs1].incompatibleDesc = changed.value[indexs1]
               }
           })
-
-
           self.risk_assess_dt
           .getColumnValueChange("rectSuggest").subscribe(changed => {
             //判断哪行发生了改变
@@ -271,25 +281,12 @@
                 indexs2 = index;
               }
             })
-
               //只要改变之后不合符项描述不为空,这代表用户在手动更改
               if(changed.value[indexs2] != '') {
                   old[indexs2].rectSuggest = changed.value[indexs2]
               }
           })
-
-      });
-
-      var objDeepCopy = function(source) {
-        var sourceCopy = source instanceof Array ? [] : {};
-        for (var item in source) {
-          sourceCopy[item] =
-            typeof source[item] === "object"
-              ? objDeepCopy(source[item])
-              : source[item];
-        }
-        return sourceCopy;
-      };
+      })
     })
     //内置校验完成后，返回false阻止提交
     form.on("onValidate", function(action, data) {});
