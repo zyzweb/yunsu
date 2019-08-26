@@ -1,0 +1,320 @@
+<style></style>
+
+<section id="toolbar"></section>
+
+<section type="template" id="template">
+<a-row>
+    <a-col>
+        <a-title key="2031559637607787" data-name="需求确认单"></a-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-create-by key="creater" data-name="创建人"></a-create-by>
+    </a-col>
+    <a-col>
+        <a-created-time key="createdTime" data-name="创建时间"></a-created-time>
+    </a-col>
+    <a-col>
+        <a-sequence-no key="sequenceNo" data-name="单据号"></a-sequence-no>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-group-title key="2001559637607787" data-name="业务标题"></a-group-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="ccode" data-name="单据编号" data-visible="false" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-date key="ddate" data-name="单据日期" data-default-value="current"></a-date>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="saleConfirm" data-name="选择销售确认单" data-query-code="saleConfirmForm" data-schema-code="saleConfirmForm" data-conditions="sequenceStatus:已完成" data-mappings="ccuscode:{ccuscode};ccusname:{ccusname};cstcode:{cstcode};cexch_name:{cexch_name};fexchrate:{fexchrate};cdepcode:{cdepcode};cpersoncode:{cpersoncode};cdefine1:{cdefine1};sequenceNo:{cdefine10};cstname:{cstname}"></a-association-form>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="ccusname" data-name="客户名称" data-default-value=""></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="ccuscode" data-name="客户编码" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="project" data-name="项目" data-name_i18n='{"en":"项目"}' data-query-code="projectsProfile" data-schema-code="projectsProfile" data-mappings="cprojectname:{cprojectname}"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-text key="cprojectname" data-name="项目名称"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-user-selector key="cdefine1" data-name="项目经理" data-dept-visible="user" data-default-value="" data-org-root=""></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-user-selector key="cdepcode" data-name="部门" data-dept-visible="org" data-default-value="" data-org-root=""></a-user-selector>
+    </a-col>
+    <a-col>
+        <a-user-selector key="cpersoncode" data-name="业务员" data-dept-visible="user" data-default-value="" data-org-root=""></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="cstcode" data-name="销售类型编码" data-default-value=""></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="cstname" data-name="销售类型名称"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="cexch_name" data-name="币种" data-default-value=""></a-text>
+    </a-col>
+    <a-col>
+        <a-number key="fexchrate" data-name="汇率"></a-number>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-sheet key="demandConfirmFormSon" data-name="需求确认单子表" data-rows="1">
+            <a-columns>
+                <a-text key="material" width="150" data-name="选择物料"></a-text>
+                <a-text key="cinvcode" width="150" data-name="物料编码" data-default-value=""></a-text>
+                <a-text key="cinvname" width="150" data-name="物料名称" data-default-value=""></a-text>
+                <a-text key="cinvstd" width="150" data-name="规格" data-default-value=""></a-text>
+                <a-number key="iqty" width="150" data-name="数量" data-default-value=""></a-number>
+                <a-text key="cunitname" width="150" data-name="计量单位" data-default-value=""></a-text>
+                <a-text key="cremark" width="150" data-name="备注" data-default-value=""></a-text>
+                <a-text key="project" width="150" data-name="项目"></a-text>
+                <a-text key="cprojectcode" width="150" data-name="项目编号" data-default-value=""></a-text>
+                <a-text key="cprojectname" width="150" data-name="项目名称" data-default-value=""></a-text>
+                <a-date key="cbdefine1" width="200" data-name="预开工时间"></a-date>
+                <a-date key="cbdefine2" width="200" data-name="预完工时间"></a-date>
+                <a-date key="cbdefine3" width="200" data-name="需求到场时间"></a-date>
+                <a-date key="cbdefine4" width="200" data-name="预到货时间"></a-date>
+                <a-text key="cdefine22" width="150" data-name="品牌要求" data-default-value=""></a-text>
+                <a-text key="cdefine23" width="150" data-name="成本参考价" data-default-value=""></a-text>
+            </a-columns>
+            <a-totals>
+                <a-total key="stat-iqty" column-key="iqty" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+                <a-total key="stat-fyfhqty" column-key="fyfhqty" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+            </a-totals>
+        </a-sheet>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="cdefine2" data-name="施工费用预算" data-default-value=""></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="cdefine3" data-name="现场采购预算" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="cdefine10" data-name="销售确认单号" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-comment key="ApprovalOpinion1562653988664" data-name="审批意见" data-limit="10M"></a-comment>
+    </a-col>
+</a-row>
+</section>
+
+<script id="customScript">
+  (function(form) {
+    /**
+     * 用户自定义JS区域
+     */
+    /**
+     * 事件绑定，form.on
+     * @param eventType 事件类型
+     * @params function 事件
+     * @param  cover    true, false 是否覆盖root的生命周期 默认不覆盖
+     */
+    //数据加载后，渲染之前，this为window
+    form.on("onLoad", function(data, dataPermission) {
+        this.actions[0].text = '保存'}, "cover");
+
+    //渲染完成后
+    var message = ''
+    form.on("onRendered", function(data) {
+      var self = this;
+    //   self.demandConfirmFormSon.valueChange.subscribe(changed => {
+    //                 debugger
+    //                 self.demandConfirmFormSon.value
+    // })  
+      var childTable = document.getElementsByClassName("actions")[0];
+      var importBtn = document.getElementsByClassName("ant-btn-default")[1];
+      document.querySelector('.actions > button').style.display = 'none'
+      //隐藏原来的导入
+      importBtn.style.display = "none";
+
+      //创建新的导入标签
+      var btn2 = document.createElement("button"); //创建元素节点
+      var attr = document.createAttribute("class"); //创建属性节点
+      attr.value = "ant-btn ant-btn-default"; //给属性节点设置值
+      btn2.setAttributeNode(attr); //给元素设置属性节点
+      btn2.style.cssText = "margin-right: 8px;";
+
+      //创建i标签
+      var i = document.createElement("i");
+      var attri = document.createAttribute("class"); //创建属性节点
+      attri.value = "anticon anticon-download"; //给属性节点设置值
+      i.setAttributeNode(attri); //给元素设置属性节点
+      btn2.appendChild(i);
+
+      //创建span标签
+      var span = document.createElement("span");
+      var spanText = document.createTextNode("导入"); //创建属性节点
+      span.appendChild(spanText); //给元素设置属性节点
+      btn2.appendChild(span);
+      //新增按钮到容器中
+      var exportBtn = document.getElementsByClassName("ant-btn-default")[2];
+      childTable.insertBefore(btn2, exportBtn);
+
+      //创建input标签 并隐藏
+      var input = document.createElement("input");
+      var attrInput = document.createAttribute("type"); //创建属性节点type
+      attrInput.value = "file"; //给属性节点设置值
+      input.setAttributeNode(attrInput); //给元素设置属性节点
+      var attrInput1 = document.createAttribute("name"); //创建属性节点name
+      attrInput1.value = "file"; //给属性节点设置值
+      input.setAttributeNode(attrInput1); //给元素设置属性节点
+
+      var attrInputId = document.createAttribute("id"); //创建属性节点name
+      attrInputId.value = "fileToUpload"; //给属性节点设置值
+      input.setAttributeNode(attrInputId); //给元素设置属性节点
+
+      input.style.cssText = "visibility:hidden";
+
+      //创建表
+      var formFile = document.createElement("form");
+      var attrform = document.createAttribute("enctype"); //创建属性节点enctype
+      attrform.value = "multipart/form-data"; //给属性节点设置值
+      formFile.setAttributeNode(attrform); //给元素设置属性节点
+
+      var attrform_id = document.createAttribute("id"); //创建属性节点id
+      attrform_id.value = "form_file";
+      formFile.setAttributeNode(attrform_id); //给元素设置属性节点
+
+      var attrform1 = document.createAttribute("method"); //创建属性节点method
+      attrform1.value = "post"; //给属性节点设置值
+      formFile.setAttributeNode(attrform1); //给元素设置属性节点
+
+      formFile.appendChild(input);
+      childTable.appendChild(formFile);
+
+      //创建a标签
+      var aEx = document.createElement("a");
+      var aText = document.createTextNode("下载示例文件"); //创建属性节点
+      aEx.appendChild(aText); //给元素设置属性节点
+      aEx.style.cssText = "margin-right: 8px;";
+
+      var aAttr = document.createAttribute("href");
+      aAttr.value = "http://47.103.130.81:10080/files/templates/template.xlsx";
+      aEx.setAttributeNode(aAttr);
+      childTable.insertBefore(aEx, exportBtn);
+
+      //点击上传文件
+      btn2.addEventListener("click", function() {
+        input.click();
+      });
+
+      //上传文件后
+      input.addEventListener("change", function() {
+        var formData = new FormData(document.getElementById("form_file"));
+        formData.append("file", formData);
+
+        //校验文件上传格式
+        var f_content = document.getElementById("form_file").file.value;
+        var fileext = f_content.substring(
+          f_content.lastIndexOf("."),
+          f_content.length
+        );
+        fileext = fileext.toLowerCase();
+        if (fileext != ".xls" && fileext != ".xlsx") {
+          self.$message.error("对不起，导入数据格式必须是xls或xlsx格式文件哦，请您调整格式后重新上传，谢谢 ！")
+          return false;
+        }
+        
+        //请求接口数据并填充
+        axios
+          .post("/api/bmetech/importDemandConfirmFormSon", formData)
+          .then(response => {
+            if (response.errcode === 0) {
+              console.log(response.errmsg);
+              let res = response.data;
+              if (res.code == "500") {
+                self.$message.error(res.msg)
+              } else if (res.code == "0") {
+                //格式正确
+                var dataArr = [];
+                let lists = res.list;
+                if(lists.length == 0) {
+                    message = '导入表格数据不能为空'
+                }
+                lists.forEach(item => {
+                  dataArr.push({
+                    cinvcode: item.cinvcode,
+                    cinvname: String(item.cinvname),
+                    cinvstd: item.cinvstd,
+                    iqty: Number(item.iqty),
+                    cunitname: String(item.cunitname),
+                    cremark: item.cremark,
+                    cprojectcode: String(item.cprojectcode),
+                    cprojectname: item.cprojectname,
+                    cbdefine1: new Date(item.cbdefine1),
+                    cbdefine2: new Date(item.cbdefine2),
+                    cbdefine3: new Date(item.cbdefine3),
+                    cbdefine4: item.cbdefine4==""?undefined:new Date(item.cbdefine4),
+                    cdefine22: item.cdefine22,
+                    cdefine23: item.cdefine23,
+                    project: item.project, //项目控件
+                    material: item.material, //选择物料控件
+                  });
+                });
+                console.log(self.demandConfirmFormSon.value.length)
+                // debugger
+                if(self.demandConfirmFormSon.value.length == 0){
+                    self.demandConfirmFormSon.value = dataArr;
+                } else if(self.demandConfirmFormSon.value.length >= 1){
+                    if(self.demandConfirmFormSon.value[0].cinvcode == ''){
+                        self.demandConfirmFormSon.value = dataArr;
+                    }else {
+                        self.demandConfirmFormSon.value = self.demandConfirmFormSon.value.concat(dataArr);
+                    }
+                }
+              }
+            }
+          });
+        document.getElementById("fileToUpload").value = '';
+      });
+    });
+
+    //内置校验完成后，返回false阻止提交
+    form.on("onValidate", function(action, data) {});
+    //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+    form.on("onPreAction", function(action, data) {
+        if(message != '') {
+            this.$message.error(message)
+            return false
+        }
+    });
+    //自定义按钮执行
+    form.on("onCustomAction", function(action, data) {});
+    //操作完成后执行
+    form.on("onActionDone", function(action, data, httpRes) {});
+  });
+</script>

@@ -1,0 +1,244 @@
+<style></style>
+
+<section id="toolbar"></section>
+
+<section type="template" id="template">
+<a-row>
+    <a-col>
+        <a-title key="2031559650118549" data-name="发货申请单"></a-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-create-by key="creater" data-name="创建人"></a-create-by>
+    </a-col>
+    <a-col>
+        <a-created-time key="createdTime" data-name="创建时间"></a-created-time>
+    </a-col>
+    <a-col>
+        <a-sequence-no key="sequenceNo" data-name="单据号"></a-sequence-no>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-group-title key="2001559650118549" data-name="业务标题"></a-group-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="ccode" data-name="单据号" data-visible="false" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-date key="ddate" data-name="发货日期" data-default-value="current"></a-date>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="requireConfirm" data-name="选择需求确认单" data-query-code="demandConfirmForm" data-schema-code="demandConfirmForm" data-mappings="cstcode:{cstcode};ccuscode:{ccuscode};ccusname:{ccusname};cdepcode:{cdepcode};cpersoncode:{cpersoncode};sequenceNo:{csocode};cstname:{cstname}"></a-association-form>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="cstname" data-name="销售类型名称"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="cstcode" data-name="销售类型" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="ccuscode" data-name="客户编码" data-default-value=""></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="ccusname" data-name="客户名称" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-user-selector key="cdepcode" data-name="销售部门" data-dept-visible="org" data-org-root=""></a-user-selector>
+    </a-col>
+    <a-col>
+        <a-user-selector key="cpersoncode" data-name="业务员" data-dept-visible="user" data-org-root=""></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="creceiveaddress" data-name="收货地址" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="ccusperson" data-name="客户联系人" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="contactphone" data-name="客户联系电话" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="csocode" data-name="需求确认单号" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-sheet key="shipmentApplicationSon" data-name="发货申请单子表" data-rows="1">
+            <a-columns>
+                <a-text key="cwhcode" width="150" data-name="仓库编码" data-visible="false" data-default-value=""></a-text>
+                <a-text key="cwhname" width="150" data-name="仓库名称" data-default-value=""></a-text>
+                <a-text key="cinvcode" width="150" data-name="物料编码" data-default-value=""></a-text>
+                <a-text key="cinvname" width="150" data-name="物料名称" data-default-value=""></a-text>
+                <a-text key="cinvstd" width="150" data-name="规格" data-default-value=""></a-text>
+                <a-text key="cunitname" width="150" data-name="计量单位" data-default-value=""></a-text>
+                <a-number key="demandQty" width="150" data-name="需求数量" data-format="percentile"></a-number>
+                <a-number key="iqty" width="150" data-name="本次申请发货数量" data-default-value="" data-format="percentile"></a-number>
+                <a-number key="fyfhqty" width="150" data-name="已申请发货数量" data-default-value="" data-format="percentile"></a-number>
+                <a-number key="currentNumber" width="150" data-name="仓库现存量" data-format="percentile"></a-number>
+                <a-text key="cprojectcode" width="150" data-name="项目编码" data-default-value=""></a-text>
+                <a-text key="cprojectname" width="150" data-name="项目名称" data-default-value=""></a-text>
+                <a-date key="cdefine37" width="200" data-name="预计发货日期"></a-date>
+                <a-date key="cbdefine4" width="200" data-name="预到货日期"></a-date>
+                <a-text key="UUID" width="150" data-name="来源需求单子表id" data-visible="false" data-default-value=""></a-text>
+                <a-text key="cremark" width="150" data-name="备注" data-default-value=""></a-text>
+            </a-columns>
+            <a-totals>
+                <a-total key="stat-iqty" column-key="iqty" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+                <a-total key="stat-Number1563791027251" column-key="currentNumber" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+                <a-total key="stat-fyfhqty" column-key="fyfhqty" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+                <a-total key="stat-Number1564561789481" column-key="demandQty" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+            </a-totals>
+        </a-sheet>
+    </a-col>
+</a-row>
+</section>
+
+<script id="customScript">
+  (function(form) {
+    /**
+     * 用户自定义JS区域
+     */
+    /**
+     * 事件绑定，form.on
+     * @param eventType 事件类型
+     * @params function 事件
+     * @param  cover    true, false 是否覆盖root的生命周期 默认不覆盖
+     */
+    //数据加载后，渲染之前，this为window
+    var submitBtnCould = true;
+    var message = "";
+    var message1 = "";
+    var shipment = []
+    form.on(
+      "onLoad",
+      function(data, dataPermission) {
+      },
+      "cover"
+    );
+    //渲染完成后
+    form.on("onRendered", function(data) {
+      var self = this;
+      self.requireConfirm.valueChange.subscribe(changed => {
+        for (var i = 0; i< self.shipmentApplicationSon.rows.length; i++) {
+          self.shipmentApplicationSon.removeRow();
+        }
+        var param = changed.value.id;
+        axios
+          .get(
+            "/api/bmetech/getShipmentFormSon?demandConfirmFormId=" +
+              changed.value.id
+          )
+          .then(function(data) {
+            var dataArr = [];
+            if (data.errcode == 0) {
+              data.data.forEach(function(item) {
+                dataArr.push({
+                  cwhcode: item.cwhcode,
+                  cwhname: item.cprojectname,
+                  cinvcode: item.cinvcode,
+                  cinvname: item.cinvname,
+                  cinvstd: item.cinvstd,
+                  cunitname: item.cunitname,
+                  iqty: item.iqty,
+                  demandQty: item.demandQty,
+                  fyfhqty: item.fyfhqty,
+                  currentNumber: item.currentNumber,
+                  cprojectcode: item.cprojectcode,
+                  cprojectname: item.cprojectname,
+                  cbdefine4: new Date(item.cbdefine4),
+                  cdefine37: undefined,
+                  UUID: item.uuid
+                });
+              });
+              // debugger
+              self.shipmentApplicationSon.value = dataArr;
+              shipment = dataArr
+            }
+            
+            self.shipmentApplicationSon
+                .getColumnValueChange("iqty")
+                .subscribe(changed => {
+                  
+                  message1 = ''
+                  var newValue = changed.value;
+                  var oldValue = []; //储存后台传过来的原始数据保持不变
+                  var kcNumber = []
+                  // debugger
+                  dataArr.forEach(function(item) {
+                    oldValue.push(item.iqty);
+                    kcNumber.push(item.currentNumber)
+                  });
+                  for (var i = 0; i < oldValue.length; i++) {
+                    if (newValue[i] <= oldValue[i]||newValue[i]==undefined) {
+                      shipment = self.shipmentApplicationSon.value
+                    }else {
+                      shipment[i].iqty = oldValue[i]
+                      self.shipmentApplicationSon.value = shipment
+                      self.$message.error("输入数字不能超过" + oldValue[i]);
+                    }
+                    if(newValue[i] > kcNumber[i]) {
+                      message1 = "本次发货数量超过库存量"
+                    } else if(newValue[i] == 0) {
+                      message1 = "本次发货数量不能为0"
+                    } else if (newValue[i] < 0) {
+                      message1 = "本次发货数量不能小于0"
+                    }
+                  }
+                });
+            var sheet = self.shipmentApplicationSon.rows;
+            var arr = [];
+            var list = { list: [] };
+            sheet.forEach(function(item) {
+              arr.push(Object.assign(item.value, { requireConfirm: param }));
+            });
+            list.list = arr;
+            console.log(list);
+            axios.post("/api/bmetech/checkStock", list).then(function(res) {
+              message = res.errmsg;
+              if (res.errcode != 0) {
+                submitBtnCould = false;
+              }
+            });
+          });
+      });
+    });
+    //内置校验完成后，返回false阻止提交
+    form.on("onValidate", function(action, data) {});
+    //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+    form.on("onPreAction", function(action, data) {
+      if (submitBtnCould == false) {
+        this.$message.error(message);
+        return false;
+      } else if(message1 != ''){
+        this.$message.error(message1);
+        return false
+      }
+    });
+    //自定义按钮执行
+    form.on("onCustomAction", function(action, data) {});
+    //操作完成后执行
+    form.on("onActionDone", function(action, data, httpRes) {});
+  });
+</script>

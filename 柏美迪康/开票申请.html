@@ -37,7 +37,7 @@
 </a-row>
 <a-row>
     <a-col>
-        <a-association-form key="saleConfirm" data-name="选择销售确认单" data-query-code="saleConfirmForm" data-schema-code="saleConfirmForm" data-mappings="cstcode:{cstcode};ccuscode:{ccuscode};ccusname:{ccusname};cdepcode:{cdepcode};cpersoncode:{cpersoncode};cexch_name:{cexch_name};fexchrate:{fexchrate};cRegCode:{cRegCode};sequenceNo:{cdefine10};saleConfirmFormSon:{invoiceApplicationFormSon}"></a-association-form>
+        <a-association-form key="saleConfirm" data-name="选择销售确认单" data-query-code="saleConfirmForm" data-schema-code="saleConfirmForm" data-mappings="cstcode:{cstcode};ccuscode:{ccuscode};ccusname:{ccusname};cdepcode:{cdepcode};cpersoncode:{cpersoncode};cexch_name:{cexch_name};fexchrate:{fexchrate};cRegCode:{cRegCode};sequenceNo:{cdefine10}"></a-association-form>
     </a-col>
     <a-col>
         <a-text key="cstcode" data-name="销售类型" data-default-value=""></a-text>
@@ -66,10 +66,10 @@
 </a-row>
 <a-row>
     <a-col>
-        <a-user-selector key="cdepcode" data-name="销售部门" data-dept-visible="user" data-default-value=""></a-user-selector>
+        <a-user-selector key="cdepcode" data-name="销售部门" data-dept-visible="user" data-default-value="" data-org-root=""></a-user-selector>
     </a-col>
     <a-col>
-        <a-user-selector key="cpersoncode" data-name="业务员" data-dept-visible="user" data-default-value=""></a-user-selector>
+        <a-user-selector key="cpersoncode" data-name="业务员" data-dept-visible="user" data-default-value="" data-org-root=""></a-user-selector>
     </a-col>
 </a-row>
 <a-row>
@@ -98,28 +98,26 @@
                 <a-text key="cinvname" width="150" data-name="物料名称" data-default-value=""></a-text>
                 <a-text key="cinvstd" width="150" data-name="规格" data-default-value=""></a-text>
                 <a-text key="cunitname" width="150" data-name="计量单位" data-default-value=""></a-text>
-                <a-number key="iqty" width="150" data-name="销售确认单数量" data-visible="false" data-default-value="" data-format="percentile"></a-number>
+                <a-number key="iqty" width="150" data-name="本次开票数量" data-default-value="" data-format="percentile"></a-number>
                 <a-number key="invoiceIssuedNum" width="150" data-name="已开票数量"></a-number>
-                <a-number key="notInvoicedNum" width="150" data-name="数量"></a-number>
-                <a-number key="ctaxprice" width="150" data-name="含税单价"></a-number>
-                <a-number key="itaxprice" width="150" data-name="含税单价" data-visible="false" data-default-value="" data-compute-formula="{invoiceApplicationFormSon.iprice}*(1+{invoiceApplicationFormSon.itaxrate}/100)" data-format="percentile"></a-number>
+                <a-number key="ctaxprice" width="150" data-name="含税单价" data-name_i18n='{"en":"含税单价"}' data-default-value="" data-format="percentile"></a-number>
                 <a-number key="iprice" width="150" data-name="无税单价" data-default-value="" data-compute-formula="{invoiceApplicationFormSon.ctaxprice}/(1+{invoiceApplicationFormSon.itaxrate}/100)" data-format="percentile"></a-number>
                 <a-number key="itaxrate" width="150" data-name="税率" data-format="ratio.percentile"></a-number>
-                <a-number key="itax" width="150" data-name="税额" data-default-value="" data-compute-formula="{invoiceApplicationFormSon.isum}*{invoiceApplicationFormSon.itaxrate}/100" data-format="percentile"></a-number>
+                <a-number key="itax" width="150" data-name="税额" data-default-value="" data-compute-formula="{invoiceApplicationFormSon.isum}-{invoiceApplicationFormSon.imoney}" data-format="percentile"></a-number>
                 <a-number key="imoney" width="150" data-name="无税金额" data-default-value="" data-compute-formula="{invoiceApplicationFormSon.iprice}*{invoiceApplicationFormSon.iqty}" data-format="percentile"></a-number>
                 <a-number key="isum" width="150" data-name="价税合计" data-default-value="" data-compute-formula="{invoiceApplicationFormSon.ctaxprice}*{invoiceApplicationFormSon.iqty}" data-format="percentile"></a-number>
                 <a-text key="cprojectcode" width="150" data-name="项目编码" data-default-value=""></a-text>
                 <a-text key="cprojectname" width="150" data-name="项目名称" data-default-value=""></a-text>
-                <a-text key="UUID" width="150" data-name="UUID"></a-text>
+                <a-text key="UUID" width="150" data-name="UUID" data-visible="false"></a-text>
             </a-columns>
             <a-totals>
                 <a-total key="stat-iqty" column-key="iqty" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
-                <a-total key="stat-itaxprice" column-key="itaxprice" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
-                <a-total key="stat-iprice" column-key="iprice" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
-                <a-total key="stat-itax" column-key="itax" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+                <a-total key="stat-itaxprice" column-key="itaxprice" data-statistic-mode="none" data-format="integer" data-name="统计"></a-total>
+                <a-total key="stat-iprice" column-key="iprice" data-statistic-mode="none" data-format="integer" data-name="统计"></a-total>
+                <a-total key="stat-itax" column-key="itax" data-statistic-mode="sum" data-format="percentile" data-name="统计"></a-total>
                 <a-total key="stat-imoney" column-key="imoney" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
-                <a-total key="stat-isum" column-key="isum" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
-                <a-total key="stat-Number1561950872944" column-key="itaxrate" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+                <a-total key="stat-isum" column-key="isum" data-statistic-mode="sum" data-format="percentile" data-name="统计"></a-total>
+                <a-total key="stat-Number1561950872944" column-key="itaxrate" data-statistic-mode="none" data-format="integer" data-name="统计"></a-total>
                 <a-total key="stat-Number1562318016902" column-key="ctaxprice" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
                 <a-total key="stat-Number1563449140067" column-key="invoiceIssuedNum" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
                 <a-total key="stat-Number1563449314964" column-key="salesConfirmFormNum" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
@@ -146,46 +144,59 @@
         form.on('onLoad',function(data, dataPermission){},'cover');
         //渲染完成后
         form.on('onRendered',function(data){
+            console.log(this.invoiceApplicationFormSon.value)
             //隐藏按钮
-            document.getElementsByClassName('actions')[0].style.display = 'none'
+            // document.getElementsByClassName('actions')[0].style.display = 'none'
             var _this = this;
             _this.saleConfirm.valueChange.subscribe(changed => {
-                console.log(changed.value.id);
-                axios.get("/api/bmetech/getInvoceApplicationSubformInfo?saleConfirmFormId=" + changed.value.id).then(function(data) {
-                var dataArr = [];
-                data.data.forEach(function(item) {
-                var notInvoicedNum = Number(item.iqty) - Number(item.invoiceIssuedNum)
-                if(notInvoicedNum == 0){
-                    return
-                }else {
-                    dataArr.push({
-                    // warehouse: {name:item.cwhname},
-                    cwhcode: item.cwhcode,
-                    cwhname: item.cwhname,
-                    cinvcode: item.cinvcode,
-                    cinvname: item.cinvname,
-                    cinvstd: item.cinvstd,
-                    cunitname: item.cunitname,
-                    iqty: item.iqty,
-                    invoiceIssuedNum: Number(item.invoiceIssuedNum),
-                    notInvoicedNum: notInvoicedNum,
-                    ctaxprice: item.ctaxprice,
-                    iprice: item.iprice,
-                    itaxrate: item.itaxrate,
-                    itax: item.itax,
-                    imoney: item.imoney,
-                    isum: item.isum,
-                    cprojectcode: item.cprojectcode,
-                    cprojectname: item.cprojectname,
-                    UUID: item.uuid
-                    })
-                }
-            });
-            _this.invoiceApplicationFormSon.value = dataArr
+                // for(let i=0;i<_this.invoiceApplicationFormSon.value.length;i++){
+                //     _this.invoiceApplicationFormSon.removeRow(i);
+                // }
+                
+                axios.get("/api/bmetech/getInvoceApplicationSubformInfo?saleConfirmFormId=" + changed.value.id)
+                .then(function(data) {
+                    var dataArr = [];
+                    data.data.forEach(function(item) {
+                        var notInvoicedNum = Number(item.iqty) - Number(item.invoiceIssuedNum)
+                        if(notInvoicedNum > 0) {
+                            dataArr.push({
+                                cwhcode: item.cwhcode,
+                                cwhname: item.cwhname,
+                                cinvcode: item.cinvcode,
+                                cinvname: item.cinvname,
+                                cinvstd: item.cinvstd,
+                                cunitname: item.cunitname,
+                                iqty: Number(item.iqty),
+                                invoiceIssuedNum: Number(item.invoiceIssuedNum),
+                                notInvoicedNum: Number(notInvoicedNum),
+                                ctaxprice: Number(item.ctaxprice),
+                                itaxrate: Number(item.itaxrate),
+                                cprojectcode: item.cprojectcode,
+                                cprojectname: item.cprojectname,
+                                UUID: item.uuid,
+                                id: item.id
+                            })
+                        }
+                    });
+                    for(let i=0;i<_this.invoiceApplicationFormSon.rows.length;i++){
+                        _this.invoiceApplicationFormSon.removeRow(i);
+                    }
+                    
+                    if(dataArr.length > 0){
+                        _this.invoiceApplicationFormSon.value = dataArr
+                    }else{
+                        //  _this.invoiceApplicationFormSon.value = [{
+                        //     UUID: "",cinvcode: "",cinvname: "",cinvstd: "",cprojectcode: "",
+                        //     cprojectname: "",cunitname: "",cwhcode: "",cwhname: "",
+                        //     id: undefined,imoney: undefined,invoiceIssuedNum: 0,
+                        //     iprice: undefined,iqty: 0,isum: undefined,
+                        //     itax: undefined,itaxprice: undefined,itaxrate: undefined,
+                        //     notInvoicedNum: undefined,}]
+                        for(var i =0;i<_this.invoiceApplicationFormSon.rows.length;i++){
+                            _this.invoiceApplicationFormSon.removeRow(i)
+                        }
+                    }
                 })
-            })
-            this.invoiceApplicationFormSon.getColumnValueChange("warehouse").subscribe(changed => {
-                console.log(changed.value);
             })
         });
         //内置校验完成后，返回false阻止提交

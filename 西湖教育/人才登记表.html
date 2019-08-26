@@ -1,0 +1,401 @@
+<style></style>
+
+<section id="toolbar"></section>
+
+<section type="template" id="template">
+  <a-row>
+    <a-col>
+      <a-title
+        key="2031565073195139"
+        data-name="人才登记表"
+        data-name_i18n='{"en":"人才登记表"}'
+      ></a-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-create-by key="creater" data-name="创建人"></a-create-by>
+    </a-col>
+    <a-col>
+      <a-created-time key="createdTime" data-name="创建时间"></a-created-time>
+    </a-col>
+    <a-col>
+      <a-sequence-no key="sequenceNo" data-name="单据号"></a-sequence-no>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-group-title
+        key="2001565073619411"
+        data-name="个人资料"
+      ></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text key="user_name" data-name="姓名"></a-text>
+    </a-col>
+    <a-col>
+      <a-image key="user_photo" data-name="个人照片"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-radio key="sex" data-name="性别" data-options="男;女"></a-radio>
+    </a-col>
+    <a-col>
+      <a-text
+        key="user_phone"
+        data-name="手机号"
+        data-regexp="/^1[3|4|5|6|7|8|9][0-9]{9}$/"
+        data-regexp-text='{"en":"Please enter a valid mobile phone number","zh":"请输入一个有效手机号码"}'
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-number key="height" data-name="身高（cm）"></a-number>
+    </a-col>
+    <a-col>
+      <a-number
+        key="weight"
+        data-name="体重（kg）"
+        data-format="percentile"
+      ></a-number>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-dropdown
+        key="politic_countenance"
+        data-name="政治面貌"
+        data-options="中共党员;共青团员;群众"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-dropdown
+        key="marital_status"
+        data-name="婚姻状况"
+        data-options="未婚;已婚;离异"
+      ></a-dropdown>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text key="nation" data-name="民族" data-default-value=""></a-text>
+    </a-col>
+    <a-col>
+      <a-date key="birthday" data-name="出生日期"></a-date>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text key="graduated_from" data-name="毕业院校"></a-text>
+    </a-col>
+    <a-col>
+      <a-text key="major" data-name="所学专业"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-dropdown
+        key="education"
+        data-name="学历"
+        data-options="博士;硕士;本科 ;大专;高中/中专;初中"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-dropdown
+        key="academic_degree"
+        data-name="学位"
+        data-options="学士;硕士;博士;无"
+      ></a-dropdown>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-date key="join_work_day" data-name="参加工作日期"></a-date>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text key="native_place" data-name="籍贯"></a-text>
+    </a-col>
+    <a-col>
+      <a-text key="household_land" data-name="户口地"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="id_card"
+        data-name="身份证号码"
+        data-regexp="/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/"
+        data-regexp-text='{"en":"Please enter a valid ID card","zh":"请输入一个有效的身份证"}'
+      ></a-text>
+    </a-col>
+    <a-col>
+      <a-text key="id_address" data-name="身份证地址"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text key="residential_address" data-name="现居住地"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-textarea key="speciality" data-name="特长"></a-textarea>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-sheet
+        key="user_education"
+        data-name="教育情况"
+        data-rows="1"
+        data-exportable="false"
+      >
+        <a-columns>
+          <a-date
+            key="education_start_date"
+            width="200"
+            data-name="开始年月"
+            data-format="YYYY-MM"
+          ></a-date>
+          <a-date
+            key="education_end_date"
+            width="200"
+            data-name="结束年月"
+            data-format="YYYY-MM"
+          ></a-date>
+          <a-text
+            key="education_school_name"
+            width="150"
+            data-name="学校名称"
+          ></a-text>
+          <a-text key="education_major" width="150" data-name="专业"></a-text>
+          <a-dropdown
+            key="educational_background"
+            width="150"
+            data-name="学历"
+            data-options="博士;硕士;本科;大专;高中/中专;初中"
+          ></a-dropdown>
+          <a-dropdown
+            key="education_learning_type"
+            width="150"
+            data-name="学习类型"
+            data-options="统招;自考;函授;成教;海外"
+          ></a-dropdown>
+        </a-columns>
+      </a-sheet>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-sheet
+        key="user_work"
+        data-name="工作经历"
+        data-rows="1"
+        data-exportable="false"
+      >
+        <a-columns>
+          <a-date
+            key="work_start_date"
+            width="200"
+            data-name="工作开始日期"
+            data-format="YYYY-MM"
+          ></a-date>
+          <a-date
+            key="work_end_date"
+            width="200"
+            data-name="工作结束日期"
+            data-format="YYYY-MM"
+          ></a-date>
+          <a-text key="work_address" width="150" data-name="工作单位"></a-text>
+          <a-text key="work_position" width="150" data-name="职位"></a-text>
+          <a-number
+            key="work_salary"
+            width="150"
+            data-name="薪金"
+            data-format="percentile"
+          ></a-number>
+          <a-text key="work_contacts" width="150" data-name="联系人"></a-text>
+          <a-text
+            key="work_contacts_phone"
+            width="150"
+            data-name="联系电话"
+            data-regexp="/^1[3|4|5|7|8|9][0-9]{9}$/"
+            data-regexp-text='{"en":"请输入正确的手机号","zh":"请输入正确的手机号"}'
+          ></a-text>
+        </a-columns>
+        <a-totals>
+          <a-total
+            key="stat-Number1565076458924"
+            column-key="work_salary"
+            data-statistic-mode="none"
+            data-format="integer"
+            data-name="统计"
+          ></a-total>
+        </a-totals>
+      </a-sheet>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-sheet
+        key="user_family"
+        data-name="家庭成员"
+        data-rows="1"
+        data-exportable="false"
+      >
+        <a-columns>
+          <a-text key="family_name" width="200" data-name="姓名"></a-text>
+          <a-text
+            key="family_relation"
+            width="150"
+            data-name="与本人关系"
+          ></a-text>
+          <a-text key="family_age" width="150" data-name="年龄"></a-text>
+          <a-text
+            key="family_user_unit"
+            width="150"
+            data-name="工作单位"
+          ></a-text>
+          <a-text
+            key="family_phone"
+            width="150"
+            data-name="联系电话"
+            data-regexp="/^1[3|4|5|7|8|9][0-9]{9}$/"
+            data-regexp-text='{"en":"请输入正确的手机号","zh":"请输入正确的手机号"}'
+          ></a-text>
+        </a-columns>
+      </a-sheet>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text key="urgent_Contacts" data-name="紧急联系人"></a-text>
+    </a-col>
+    <a-col>
+      <a-text
+        key="urgent_phone"
+        data-name="紧急联系人电话"
+        data-regexp="/^1[3|4|5|7|8|9][0-9]{9}$/"
+        data-regexp-text='{"en":"请输入正确的手机号","zh":"请输入正确的手机号"}'
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text key="urgent_address" data-name="联系地址"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-radio
+        key="talent_status"
+        data-name="人才状态（是否作废）"
+        data-options="是;否"
+      ></a-radio>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-radio
+        key="entry_status"
+        data-name="入编状态"
+        data-visible="false"
+        data-options="人才;拟入编;已入编"
+      ></a-radio>
+    </a-col>
+  </a-row>
+</section>
+
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+
+<script id="customScript">
+  (function(form) {
+    /**
+     * 用户自定义JS区域
+     */
+    /**
+     * 事件绑定，form.on
+     * @param eventType 事件类型
+     * @params function 事件
+     * @param cover true, false 是否覆盖root的生命周期 默认不覆盖
+     */
+    //数据加载后，渲染之前，this为window
+    form.on(
+      "onLoad",
+      function(data, dataPermission) {
+        let _this = this;
+        let queryParam = _this.$router.currentRoute.query;
+        console.log(queryParam.ssc);
+        var param = {};
+        if (
+          queryParam.ssc &&
+          queryParam.ssc != undefined &&
+          queryParam.ssc == "1nZwvAs8zba"
+        ) {
+          param = {
+            userPhone: sessionStorage.getItem("userPhone"),
+            idCard: sessionStorage.getItem("idCard"),
+            code: sessionStorage.getItem("code")
+          };
+        } else {
+          param = {
+            userPhone: "",
+            idCard: "",
+            code: ""
+          };
+          return param;
+        }
+        return axios
+          .post("/api/education/externalLink/selectByIdAndPhone", param)
+          .then(res => {
+            if (res.errcode === 0) {
+              if (JSON.stringify(res.data) === "{}") {
+                data.user_phone = sessionStorage.getItem("userPhone"); //手机号
+                data.id_card = sessionStorage.getItem("idCard"); //身份证号码
+                dataPermission["user_phone"].e = false;
+                dataPermission["id_card"].e = false;
+                return data;
+              } else {
+                res.data.user_education.forEach(item => {
+                  item.education_start_date = new Date(
+                    item.education_start_date
+                  );
+                  item.education_end_date = new Date(item.education_end_date);
+                });
+                res.data.user_work.forEach(item => {
+                  item.work_start_date = new Date(item.work_start_date);
+                  item.work_end_date = new Date(item.work_end_date);
+                });
+                console.log("查询成功");
+                dataPermission["user_phone"].e = false;
+                dataPermission["id_card"].e = false;
+              }
+              return res.data;
+            } else if (res.errcode === 5001) {
+              _this.$confirm({ title: "提示", content: res.errmsg });
+            } else if (res.errcode === 5002) {
+              _this.$confirm({ title: "提示", content: res.errmsg });
+            }
+            return data;
+          });
+      },
+      "cover"
+    );
+    //渲染完成后
+    form.on("onRendered", function(data) {});
+    //内置校验完成后，返回false阻止提交
+    form.on("onValidate", function(action, data) {});
+    //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+    form.on("onPreAction", function(action, data) {});
+    //自定义按钮执行
+    form.on("onCustomAction", function(action, data) {});
+    //操作完成后执行
+    form.on("onActionDone", function(action, data, httpRes) {});
+  });
+</script>

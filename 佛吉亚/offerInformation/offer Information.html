@@ -1,0 +1,1008 @@
+<style>
+  .handSignImg {
+    width: 200px;
+  }
+  #pdfPath a {
+    border-radius: 6px;
+    border: 1px solid #eee;
+    padding: 8px 20px;
+    background: #2970ff;
+    color: #fff;
+  }
+</style>
+
+<section id="toolbar"></section>
+
+<section type="template" id="template">
+  <a-row>
+    <a-col>
+      <a-title key="2031560318618965" data-name="Offer Information"></a-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-create-by key="creater" data-name="Creater"></a-create-by>
+    </a-col>
+    <a-col>
+      <a-created-time
+        key="createdTime"
+        data-name="Created Time"
+      ></a-created-time>
+    </a-col>
+    <a-col>
+      <a-sequence-no key="sequenceNo" data-name="No"></a-sequence-no>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-group-title
+        key="2001563327773130"
+        data-name="Personnal Information"
+      ></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="realName"
+        data-name="Chinese Name"
+        data-default-value=""
+        data-placeholder="e.g.张三"
+      ></a-text>
+    </a-col>
+    <a-col>
+      <a-text
+        key="NameEN"
+        data-name="English Name"
+        data-placeholder="e.g.Ashley(Only for Chinese)"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="enlastname"
+        data-name="Last Name"
+        data-placeholder="e.g.ZHANG or SMITH"
+      ></a-text>
+    </a-col>
+    <a-col>
+      <a-text
+        key="enfirstname"
+        data-name="First Name"
+        data-placeholder="e.g. San or Michael"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-dropdown
+        key="sex"
+        data-name="Gender"
+        data-options="Male;Female"
+        data-empty-value="Please select"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-text
+        key="staffMobile"
+        data-name="Mobile"
+        data-default-value=""
+        data-regexp="/^1[3|4|5|7|8|9][0-9]{9}$/"
+        data-regexp-text="Please enter a valid telephone number"
+      ></a-text>
+    </a-col>
+    <a-col>
+      <a-text
+        key="staffEmail"
+        data-name="Employee Email"
+        data-default-value=""
+        data-regexp="/^\w+([-+.]\w+)*@\w+([-.]\\w+)*\.\w+([-.]\w+)*$/"
+        data-regexp-text="Please enter a valid email"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-group-title
+        key="2001563328559034"
+        data-name="Offer Information"
+      ></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-dropdown
+        key="offerType"
+        data-name="Types of Offer"
+        data-default-value="CIIC Offer"
+        data-options="CIIC Offer;Faurecia Offer"
+        data-empty-value="Please select"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-date key="distributeOfferDate" data-name="Offer Provide Date"></a-date>
+    </a-col>
+    <a-col>
+      <a-dropdown
+        key="typeOfContractTerm"
+        data-name="Type of Contract Term"
+        data-display-formula="{offerType} == 'Faurecia Offer'"
+        data-required-formula="{offerType} == 'Faurecia Offer'"
+        data-default-value="Fixed term"
+        data-options="Fixed term;Indefinite term"
+        data-empty-value="please select"
+      ></a-dropdown>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-date key="arrivalDate" data-name="On Board Date"></a-date>
+    </a-col>
+    <a-col>
+      <a-date key="contractStartDate" data-name="Contract Start Date"></a-date>
+    </a-col>
+    <a-col>
+      <a-dropdown
+        key="contractDeadline"
+        data-name="Contract period（Y）"
+        data-display-formula="{typeOfContractTerm} == 'Fixed term'"
+        data-required-formula="{typeOfContractTerm} == 'Fixed term'"
+        data-options="1;2;3;4;5;6"
+        data-empty-value="please select"
+      ></a-dropdown>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-date
+        key="contractEndDate"
+        data-name="Contract End Date"
+        data-display-formula="{typeOfContractTerm} == 'Fixed term'"
+        data-required-formula="{typeOfContractTerm} == 'Fixed term'"
+      ></a-date>
+    </a-col>
+    <a-col>
+      <a-dropdown
+        key="probationPeriod"
+        data-name="Probation Period（M）"
+        data-display-formula="{typeOfContractTerm} == 'Fixed term'"
+        data-required-formula="{typeOfContractTerm} == 'Fixed term'"
+        data-options="1;2;3;4;5;6;0"
+        data-empty-value="Please select"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-number
+        key="basicSalary"
+        data-name="Basic Salary"
+        data-format="percentile"
+      ></a-number>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-association-form
+        key="bonusType"
+        data-name="Bonus Type"
+        data-query-code="fjy_bonus_type"
+        data-schema-code="fjy_bonus_type"
+        data-mappings="rate:{ratio}"
+        data-select-mode="dropdown"
+      ></a-association-form>
+    </a-col>
+    <a-col>
+      <a-text key="ratio" data-name="Rate" data-default-value=""></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-radio
+        key="transportationAllowance"
+        data-name="Transportation Allowance"
+        data-display-formula="{offerType} 包含 'Faureci'"
+        data-default-value="Y"
+        data-options="Y;N"
+      ></a-radio>
+    </a-col>
+    <a-col>
+      <a-dropdown
+        key="allowanceType"
+        data-name="Type of Allowance"
+        data-display-formula="{transportationAllowance} 包含 'Y' && {offerType} 包含 'Faureci'"
+        data-required-formula="{transportationAllowance} == 'Y' && {offerType} == '佛吉亚offer'"
+        data-options="Compliance with company policy;Fill in the amount"
+        data-empty-value="Please select"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-number
+        key="allowanceAmount"
+        data-name="Amount"
+        data-display-formula="{offerType} 包含 'Faureci' && {transportationAllowance} 包含 'Y' && {allowanceType} 包含 'Fil'"
+        data-format="percentile"
+      ></a-number>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-radio
+        key="signOn"
+        data-name="Sign-on Bonu"
+        data-name_i18n='{"en":"Sign-on Bonus"}'
+        data-display-formula="{offerType} == 'Faurecia Offer'"
+        data-default-value="Y"
+        data-options="Y;N"
+      ></a-radio>
+    </a-col>
+    <a-col>
+      <a-number
+        key="signonBonus"
+        data-name="Sign-on Bonus"
+        data-display-formula="{signOn} == 'Y' && {offerType} == 'Faurecia Offer'"
+        data-required-formula="{offerType} == 'Faurecia Offer' && {signOn} == 'Y'"
+        data-format="percentile"
+      ></a-number>
+    </a-col>
+    <a-col>
+      <a-date
+        key="signonDate"
+        data-name="Sign-on Bonus Date"
+        data-display-formula="{signOn} == 'Y' && {offerType} == 'Faurecia Offer'"
+        data-required-formula="{offerType} == 'Faurecia Offer' && {signOn} == 'Y'"
+      ></a-date>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-radio
+        key="medicalInsurance"
+        data-name="Premium Medical Insurance (Cigna & AD&D)"
+        data-display-formula="{offerType} == 'Faurecia Offer'"
+        data-default-value="Y"
+        data-options="Y;N"
+      ></a-radio>
+    </a-col>
+    <a-col>
+      <a-radio
+        key="relocationBenefit"
+        data-name="Relocation Settlement Allowance"
+        data-display-formula="{offerType} == 'Faurecia Offer'"
+        data-default-value="Y"
+        data-options="Y;N"
+      ></a-radio>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-dropdown
+        key="communicationAllowance"
+        data-name="Mobile Allowance"
+        data-options="250 CNY/M;Company Mobile;No"
+        data-empty-value="Please select"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-association-form
+        key="workplacid"
+        data-name="Working Location"
+        data-query-code="fjy_city"
+        data-schema-code="fjy_city"
+      ></a-association-form>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-radio
+        key="hireexpat"
+        data-name="PRC Non-Residents "
+        data-display-formula="{offerType} == 'Faurecia Offer'"
+        data-default-value="N"
+        data-options="Y;N"
+      ></a-radio>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-number
+        key="PensionScheme"
+        data-name="Pension Scheme"
+        data-display-formula="{hireexpat} == 'Y' && {offerType} == 'Faurecia Offer'"
+        data-format="RMB.percentile"
+      ></a-number>
+    </a-col>
+    <a-col>
+      <a-number
+        key="HousingAllowance"
+        data-name="Housing Allowance"
+        data-display-formula="{hireexpat} == 'Y' && {offerType} == 'Faurecia Offer'"
+        data-format="RMB.percentile"
+      ></a-number>
+    </a-col>
+    <a-col>
+      <a-text
+        key="HomeVisit"
+        data-name="Home Visit(Time/Y)"
+        data-display-formula="{hireexpat} == 'Y' && {offerType} == 'Faurecia Offer'"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-number
+        key="incomingTax"
+        data-name="Income Tax Allowance"
+        data-display-formula="{hireexpat} == 'Y' && {offerType} == 'Faurecia Offer'"
+        data-format="RMB.percentile"
+      ></a-number>
+    </a-col>
+    <a-col>
+      <a-date key="offerSignBackDate" data-name="Send Back Date"></a-date>
+    </a-col>
+    <a-col>
+      <a-user-selector
+        key="Onboardsponser"
+        data-name="On Board Sponser"
+        data-dept-visible="user"
+        data-org-root=""
+        data-mappings="name:{OnBoardSponserName};"
+      ></a-user-selector>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="OnBoardSponserName"
+        data-name="On Board Sponser Name"
+        data-visible="false"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-group-title
+        key="2001563329714299"
+        data-name="Position Information"
+      ></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="positionName"
+        data-name="Position Title"
+        data-default-value=""
+      ></a-text>
+    </a-col>
+    <a-col>
+      <a-user-selector
+        key="directManager"
+        data-name="Line Manager"
+        data-dept-visible="user"
+        data-org-root=""
+      ></a-user-selector>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text key="LineManagerEmail" data-name="Line Manager Email"></a-text>
+    </a-col>
+    <a-col>
+      <a-text
+        key="directManagerPositon"
+        data-name="Line Manager Position Title"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-group-title
+        key="2001563329744500"
+        data-name="Relocation Memo"
+      ></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-logic
+        key="needMemo"
+        data-name="Relocation"
+        data-default-value="false"
+      ></a-logic>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="MobilizationCo"
+        data-name="Relocated Company"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+      ></a-text>
+    </a-col>
+    <a-col>
+      <a-association-form
+        key="mobilizationSite"
+        data-name="Relocated Location"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+        data-schema-code="fjy_city"
+      ></a-association-form>
+    </a-col>
+    <a-col>
+      <a-association-form
+        key="socialSecurityFundPalace"
+        data-name="Social Benefits & Housing Fund From"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+        data-schema-code="fjy_city"
+      ></a-association-form>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-user-selector
+        key="NewNmanager"
+        data-name="New N+1 manager"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+        data-dept-visible="user"
+        data-org-root=""
+      ></a-user-selector>
+    </a-col>
+    <a-col>
+      <a-dropdown
+        key="familyCompany"
+        data-name="Family Members"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+        data-options="Accompany;Not Accompany"
+        data-empty-value="Please select"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-number
+        key="settleInAllowance"
+        data-name="Reloc. Allow.(lump-sum)"
+        data-display-formula="{needMemo} == true && {familyCompany} == 'Accompany'"
+        data-required-formula="{needMemo} == true && {familyCompany} == 'Accompany'"
+        data-format="percentile"
+      ></a-number>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-dropdown
+        key="ZhuFangBuTie"
+        data-name="Housing Allowance"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+        data-options="Yes,a fix amount;No;Yes,refer to the memo"
+        data-empty-value="please select"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-number
+        key="housingSubsidyStandard"
+        data-name="Fix Amount"
+        data-display-formula="{needMemo} == true && {ZhuFangBuTie} == 'Yes,a fix amount'"
+        data-required-formula="{needMemo} == true && {ZhuFangBuTie} == 'Yes,a fix amount'"
+        data-format="percentile"
+      ></a-number>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-dropdown
+        key="LivingAllowance"
+        data-name="Living Allowance"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+        data-options="Yes,a fix amount;No;Yes,refer to the memo"
+        data-empty-value="please seelct"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-number
+        key="liveAllowance"
+        data-name="Fix Amount"
+        data-display-formula="{needMemo} == true && {LivingAllowance} == 'Yes,a fix amount'"
+        data-required-formula="{needMemo} == true && {ZhuWaiJinTie} == 'Yes,a fix amount'"
+        data-default-value="0"
+        data-format="percentile"
+      ></a-number>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-dropdown
+        key="ZhuWaiJinTie"
+        data-name="Resident Allowance"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+        data-options="Yes,a fix amount;No;Yes,refer to the memo"
+        data-empty-value="please select"
+      ></a-dropdown>
+    </a-col>
+    <a-col>
+      <a-number
+        key="residentAllowance"
+        data-name="Fix Amount"
+        data-display-formula="{needMemo} == true && {ZhuWaiJinTie} == 'Yes,a fix amount'"
+        data-required-formula="{needMemo} == true && {ZhuWaiJinTie} == 'Yes,a fix amount'"
+        data-default-value="0"
+        data-format="percentile"
+      ></a-number>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-date
+        key="mobilizationStartDate"
+        data-name="Mobilization Start Date"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+      ></a-date>
+    </a-col>
+    <a-col>
+      <a-number
+        key="mobilizationLimit"
+        data-name="Mobilization Period（Y）"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+      ></a-number>
+    </a-col>
+    <a-col>
+      <a-date
+        key="MobilizationEndDate"
+        data-name="Mobilization End Date"
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+      ></a-date>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-radio
+        key="educationForChildren"
+        data-name="单选框"
+        data-name_i18n='{"en":"Education for Children"}'
+        data-display-formula="{needMemo} == true"
+        data-required-formula="{needMemo} == true"
+        data-default-value="Y"
+        data-options="Y;N"
+      ></a-radio>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-group-title key="2001563331891061" data-name="Others"></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text key="pdfPath" data-name="pdf路径" data-default-value=""></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-attachment
+        key="offerSendAttachment"
+        data-name="File"
+        data-limit="10M"
+      ></a-attachment>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-description
+        key="2021564711178361"
+        data-name="If you have already got the final offer, please upload the file here"
+      ></a-description>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-group-title
+        key="2001560929864374"
+        data-name="员工确认信息"
+      ></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="confirm"
+        data-name="员工确认"
+        data-visible="false"
+        data-display-formula="{status} 包含 '已确认'"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="handSignPath"
+        data-name="签字确认图片地址"
+        data-visible="false"
+        data-display-formula="{status} 包含 '已确认'"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-textarea
+        key="Opinion"
+        data-name="意见栏"
+        data-visible="false"
+        data-display-formula="{confirm} 包含 '拒绝'"
+      ></a-textarea>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="printSignPath"
+        data-name="打印签字图片路径"
+        data-visible="false"
+        data-display-formula="{status} 包含 '已确认'"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="status"
+        data-name="状态"
+        data-visible="false"
+        data-default-value="待发送"
+      ></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+      <a-text
+        key="type"
+        data-name="是否已发预入职"
+        data-visible="false"
+        data-default-value="未发送"
+      ></a-text>
+    </a-col>
+  </a-row>
+</section>
+
+<script>
+  var iframeParentHtml = window.document.getElementsByTagName("html");
+  var iframeParentBody = window.document.getElementsByTagName("body");
+
+  var div = document.getElementById("dialog1");
+
+  var iframe = document.createElement("iframe");
+  iframe.name = "productOffer";
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.style.position = "absolute";
+  iframe.style.display = "none";
+  iframeParentBody[0].appendChild(iframe);
+
+  iframeParentHtml[0].style.width = "100%";
+  iframeParentHtml[0].style.height = "97%";
+  iframeParentBody[0].style.width = "100%";
+  iframeParentBody[0].style.height = "100%";
+  console.log(iframe);
+</script>
+
+<script id="customScript">
+  var isChangeOffer = window.location.href.indexOf("objectId") > -1;
+  var isSendMobileResult = true;
+  let pub = {};
+
+  (function(form) {
+    let subscribes = [];
+    pub.getMaxDay = function(year, month) {
+      return new Date(year, month, 0).getDate();
+    };
+    // 格式化日期
+    pub.format = function(date) {
+      let year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      let day = date.getDate();
+      // let [ year, month, day ] = date.split(/-|\//g);
+
+      let maxDays = pub.getMaxDay(year, month);
+
+      // 当前天数大于 最大天数
+      day = day > maxDays ? maxDays : day;
+
+      // 月份 大于 12
+      month = month > 12 ? 12 : month;
+
+      return [+year, +month, +day];
+    };
+    // add 增加年份
+    pub.add = function(num, type, date) {
+      let [year, month, day] = pub.format(date);
+
+      let endYear = year + num;
+
+      let maxDays = pub.getMaxDay(endYear, month);
+
+      if (type === "year") {
+        // 当前日期
+        day = day > maxDays ? maxDays : day;
+
+        if (day === 1) {
+          // 当前月的 1 号
+          month = month - 1;
+          if (month == 0) {
+            month = 12;
+            endYear = endYear - 1;
+          }
+          day = this.getMaxDay(endYear, month);
+        } else {
+          day = day - 1;
+        }
+        return [endYear, month, day].join("-");
+      }
+    };
+    /**
+     * 用户自定义JS区域
+     */
+    /**
+     * 事件绑定，form.on
+     * @param eventType 事件类型
+     * @params function 事件
+     * @param  cover    true, false 是否覆盖root的生命周期 默认不覆盖
+     */
+
+    //数据加载后，渲染之前，this为window
+    var hostUrl =
+      window.location.href.indexOf("/mobile/") > -1
+        ? window.config.trnasHost
+        : window.config.portalHost;
+    var apiHostUrl = window.config.apiHost;
+    form.on(
+      "onLoad",
+      function(data, dataPermission) {
+        console.log();
+        const codes = ["submit"];
+        var isEdit = false;
+        this.actions.forEach((item, index) => {
+          if (item.code == "submit") {
+            item.visible = false; // 将提交设置不可见
+          }
+          if (item.code == "edit") {
+            isEdit = true;
+          }
+        });
+        this.actions.push({ //新添加一个 Create Offer按钮
+          code: "submit",
+          disabled: false,
+          loading: false,
+          text: "Create Offer",
+          visible: true
+        });
+        if (data.sequenceStatus) {
+          this.actions.push({
+            code: "submit",
+            disabled: false,
+            loading: false,
+            text: "Previous Version",
+            visible: true
+          });
+        }
+      },
+      "cover"
+    );
+    //渲染完成后
+    form.on("onRendered", function(data) {
+      let pdfBox = document.querySelector("#pdfPath");
+      const objectId = this.$router.app._route.query.objectId;
+      console.log(objectId);
+      if (objectId) {
+        pdfBox.innerHTML =
+          '<a href="javascript:;" class="download">Download</a>';
+      } else {
+        pdfBox.style.display = "none";
+      }
+
+      document.addEventListener(
+        "click",
+        e => {
+          if (e.target.className === "download") {
+            data.pdfPath
+              ? window.open(data.pdfPath, "_blank")
+              : this.$message.warning("文件不存在！");
+          }
+        },
+        false
+      );
+
+      if (window.location.href.indexOf("objectId") > -1) {
+        var curNode = document.getElementsByClassName("h3-panel")[
+          document.getElementsByClassName("h3-panel").length - 1
+        ];
+        curNode.style.display = "block";
+        if (this.handSignPath.value && this.handSignPath.value != "") {
+          if (this.handSignPath.value.indexOf("http") > -1) {
+            this.handSignPath.value = this.handSignPath.value;
+          } else {
+            this.handSignPath.value = hostUrl + this.handSignPath.value;
+          }
+          var imgElem = document.createElement("img");
+          imgElem.className = "handSignImg";
+          imgElem.src = this.handSignPath.value;
+          curNode.getElementsByClassName("h3-panel-body")[0].append(imgElem);
+        }
+        if (this.printSignPath.value && this.printSignPath.value != "") {
+          if (this.printSignPath.value.indexOf("http") > -1) {
+            this.printSignPath.value = this.printSignPath.value;
+          } else {
+            this.printSignPath.value = hostUrl + this.printSignPath.value;
+          }
+        }
+        // document.getElementById("status").getElementsByTagName("input")[0].disabled = true;
+      } else {
+        // document.getElementsByClassName("h3-panel xl")[document.getElementsByClassName("h3-panel xl").length-1].style.display = "none"
+      }
+
+      // 监听事件处理
+      ["contractStartDate", "contractDeadline"].forEach(item => {
+        subscribes.push(
+          this[item].valueChange.subscribe(changed => {
+            // 合同开始时间
+            let date = "";
+            let during = "";
+            if (changed.value instanceof Date) {
+              date = changed.value;
+              this.mobilizationStartDate.value = date;
+              during = +this.contractDeadline.value || 0;
+            } else {
+              date = this.contractStartDate.value;
+              during = +changed.value;
+              // this.mobilizationLimit.value = during;
+            }
+            if (date && during != 0) {
+              this.contractEndDate.value = new Date(
+                pub.add(during, "year", date)
+              );
+              this.MobilizationEndDate.value = this.contractEndDate.value;
+              this.mobilizationLimit.value = during;
+            } else {
+              this.mobilizationStartDate.value = null;
+            }
+          })
+        );
+      });
+      ["mobilizationStartDate", "mobilizationLimit"].forEach(item => {
+        subscribes.push(
+          this[item].valueChange.subscribe(changed => {
+            // 合同开始时间
+            let date = "";
+            let during = "";
+            debugger;
+            if (changed.value instanceof Date) {
+              date = changed.value;
+              // during = +this.contractDeadline.value || 0;
+              during = +this.mobilizationLimit.value || 0;
+            } else {
+              // date = this.contractStartDate.value;
+              date = this.mobilizationStartDate.value;
+              during = +changed.value;
+            }
+            if (date && during != 0) {
+              this.MobilizationEndDate.value = new Date(
+                pub.add(during, "year", date)
+              );
+            }
+          })
+        );
+      });
+
+      subscribes.push(
+        this.arrivalDate.valueChange.subscribe(changed => {
+          this.contractStartDate.value = changed.value;
+        })
+      );
+
+      this.directManager.valueChange.subscribe(changed => {
+        const { value } = changed;
+        if (value.length > 0) {
+          const { email, id } = value[0];
+          this.LineManagerEmail.value = email;
+          axios.get("/api/newlyAdded/selectByNumberId?id=" + id).then(res => {
+            const { data, errcode, errmsg } = res;
+            if (errcode === 0) {
+              this.directManagerPositon.value = data.extend1 || "";
+            }
+          });
+        }
+      });
+      if (
+        data.emailContent != "" &&
+        data.emailContent != null &&
+        data.emailContent != undefined
+      ) {
+        localStorage.setItem("offerEmailStr", data.emailContent);
+      }
+      if (
+        data.pdfContent != "" &&
+        data.pdfContent != null &&
+        data.pdfContent != undefined
+      ) {
+        localStorage.setItem("offerHtmlStr", data.pdfContent);
+      }
+      if (
+        data.memoHtml != "" &&
+        data.memoHtml != null &&
+        data.memoHtml != undefined
+      ) {
+        localStorage.setItem("offerMemoStr", data.memoHtml);
+      }
+      this.needMemo.valueChange.subscribe(changed => {
+        if (changed.value) {
+          this.mobilizationStartDate.value = this.contractStartDate.value
+            ? new Date(this.contractStartDate.value)
+            : "";
+          this.mobilizationLimit.value = this.contractDeadline.value
+            ? parseInt(this.contractDeadline.value)
+            : "";
+          this.MobilizationEndDate.value = this.contractEndDate.value
+            ? new Date(this.contractEndDate.value)
+            : "";
+        }
+      });
+    });
+    //内置校验完成后，返回false阻止提交
+    form.on("onValidate", function(action, data) {});
+    //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+    form.on("onPreAction", function(action, data) {
+      // if(action.code == "submit"){
+      //     if(!isSendMobileResult){
+      //         this.$message.error("手机号被占用")
+      //     }
+      //     return isSendMobileResult;
+      // }
+    });
+    //自定义按钮执行
+    form.on("onCustomAction", function(action, data) {});
+    //操作完成后执行
+    form.on("onActionDone", function(action, data, httpRes) {
+      if (action.code == "submit") {
+        // console.log(data,httpRes)
+        axios
+          .get(
+            apiHostUrl +
+              "/api/faurecia/get_offfer_html_param?objectId=" +
+              data.id
+          )
+          .then(res => {
+            if (res.errcode == 0) {
+              if (action.text == "Previous Version") {
+                res.data.data.isHistroy = true;
+              } else {
+                res.data.data.isHistroy = false;
+              }
+              res.data.data.objectId = data.id;
+              localStorage.setItem(
+                "productOffer",
+                JSON.stringify(res.data.data)
+              );
+              var iframeParent = document.getElementsByTagName("iframe"); //两者一样
+              var iframe = window.document.getElementsByTagName("iframe");
+              iframe[0].src = "/custom/productOffer.html";
+              iframe[0].style.display = "block";
+              iframeParent[0].style.top = "0px"; //在最上面
+              iframeParent[0].style.width = "100%";
+              iframeParent[0].style.height = "100%";
+              iframeParent[0].style.background = "#FFF";
+              iframeParent[0].style.zIndex = "9999";
+              iframeParent[0].style.border = "none";
+            }
+          });
+
+        return false;
+      }
+    });
+  });
+</script>

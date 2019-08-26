@@ -1,0 +1,469 @@
+<style></style>
+
+<section id="toolbar"></section>
+
+<section type="template" id="template">
+<a-row>
+    <a-col>
+        <a-title key="2031555920388668" data-name="请假流程申请"></a-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-sequence-no key="sequenceNo" data-name="单据号" data-visible="false"></a-sequence-no>
+    </a-col>
+    <a-col>
+        <a-create-by key="creater" data-name="创建人" data-visible="false"></a-create-by>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-created-time key="createdTime" data-name="创建时间" data-visible="false"></a-created-time>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-user-selector key="applicant" data-name="申请人" data-visible="false" data-dept-visible="user" data-org-root=""></a-user-selector>
+    </a-col>
+    <a-col>
+        <a-date key="applicationTime" data-name="申请时间" data-visible="false" data-default-value="current"></a-date>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="leaveStaff" data-name="请假员工" data-style="" data-required-formula="{typeOfLeave} != '0'" data-query-code="YGLB" data-schema-code="staffInfo" data-mappings="department:{subordinateDepartment};staffName:{staff};ranknum:{jibie}"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-user-selector key="subordinateDepartment" data-name="所属部门" data-dept-visible="org" data-default-value="" data-org-root=""></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-dropdown key="typeOfLeave" data-name="请假类型" data-default-value="事假" data-options="事假;年假;有薪假;病假;产假;产检假;陪产假;丧假;其它"></a-dropdown>
+    </a-col>
+    <a-col>
+        <a-user-selector key="notifyStaff" data-name="知会人员" data-multi="true" data-dept-visible="user" data-default-value="" data-org-root=""></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-date key="startTime" data-name="开始时间" data-on-change="var val1 = this.startTime.value;
+if(val1 && value){
+  var times  =  (val1.getTime() - value.getTime()) / (1000 * 60 * 60 *24);
+  times = Math.floor(times) + 1;
+  this.applicationDays.value = times;
+}" data-default-value="current" data-format="YYYY-MM-DD HH:mm"></a-date>
+    </a-col>
+    <a-col>
+        <a-date key="endTime" data-name="结束时间" data-display-formula="{startTime} != ''" data-on-change="var val1 = this.startTime.value;
+debugger
+if(val1 && value){
+  var times  =  (value.getTime() - val1.getTime()) / (1000 * 60 * 60 *24);
+  times = Math.floor(times) + 1;
+  this.applicationDays.value = times;
+}" data-default-value="current" data-format="YYYY-MM-DD HH:mm" data-min-date="{startTime}"></a-date>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-number key="applicationDays" data-name="申请天数" data-on-change="" data-format="tenths"></a-number>
+    </a-col>
+    <a-col>
+        <a-number key="days" data-name="剩余假期数" data-display-formula="{typeOfLeave} == '年假' || {typeOfLeave} == '有薪假'" data-format="tenths"></a-number>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-textarea key="cause" data-name="事由" data-default-value=""></a-textarea>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-attachment key="enclosure" data-name="附件" data-limit="10M"></a-attachment>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-user-selector key="staff" data-name="请假人员姓名" data-visible="false" data-dept-visible="user" data-org-root=""></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-number key="jibie" data-name="级别数值" data-visible="false"></a-number>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-date key="ActualStartDate" data-name="实际开始日期" data-visible="false" data-on-change="var val1 = this.ActualEndDate.value;
+if(val1 && value){
+  var times  =  (val1.getTime() - value.getTime()) / (1000 * 60 * 60 *24);
+  times = Math.floor(times) + 1;
+  this.ActualDays.value = times;
+}" data-format="YYYY-MM-DD HH:mm"></a-date>
+    </a-col>
+    <a-col>
+        <a-date key="ActualEndDate" data-name="实际结束日期" data-visible="false" data-on-change="var val1 = this.ActualStartDate.value;
+if(val1 && value){
+  var times  =  (value.getTime() - val1.getTime()) / (1000 * 60 * 60 *24);
+  times = Math.floor(times) + 1;
+  this.ActualDays.value = times;
+}" data-format="YYYY-MM-DD HH:mm"></a-date>
+    </a-col>
+    <a-col>
+        <a-number key="ActualDays" data-name="实际请假天数" data-visible="false"></a-number>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-group-title key="2001562762474234" data-name="假期情况"></a-group-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-number key="cycleEnjoyment" data-name="周期享有数" data-format="tenths"></a-number>
+    </a-col>
+    <a-col>
+        <a-number key="currentEnjoyment" data-name="当前享有数" data-format="tenths"></a-number>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-number key="usedNumber" data-name="已用数" data-format="tenths"></a-number>
+    </a-col>
+    <a-col>
+        <a-number key="balanceday" data-name="结余数" data-format="tenths"></a-number>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-number key="approvals" data-name="等待审批数" data-format="tenths"></a-number>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-sheet key="leave_approval_list" data-name="请假审批列表">
+            <a-columns>
+                <a-dropdown key="leave_type" width="150" data-name="请假类型" data-default-value="事假" data-options="事假;年假;有薪假;病假;产假;产检假;陪产假;丧假;其它"></a-dropdown>
+                <a-date key="leave_start" width="200" data-name="开始时间" data-format="YYYY-MM-DD HH:mm:ss"></a-date>
+                <a-date key="leave_end" width="200" data-name="结束时间"></a-date>
+                <a-number key="leave_num" width="150" data-name="申请天数"></a-number>
+                <a-text key="leave_status" width="150" data-name="流程状态"></a-text>
+            </a-columns>
+            <a-totals>
+                <a-total key="stat-Number1563156038054" column-key="leave_num" data-statistic-mode="none" data-format="integer" data-name="统计"></a-total>
+            </a-totals>
+        </a-sheet>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-description key="2021559820181684" data-name="HR核算结果"></a-description>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-sheet key="PayLeaveList" data-name="核准请假" data-rows="0">
+            <a-columns>
+                <a-number key="LeaveDays" width="150" data-name="请假天数" data-default-value=""></a-number>
+                <a-text key="PayTerm" width="150" data-name="计薪期间" data-default-value=""></a-text>
+            </a-columns>
+            <a-totals>
+                <a-total key="stat-LeaveDays" column-key="LeaveDays" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+            </a-totals>
+        </a-sheet>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-comment key="ApprovalOpinion" data-name="审批意见" data-limit="10M"></a-comment>
+    </a-col>
+</a-row>
+</section>
+
+<script id="customScript">
+  (function(form) {
+    /**
+     * 用户自定义JS区域
+     */
+    /**
+     * 事件绑定，form.on
+     * @param eventType 事件类型
+     * @params function 事件
+     * @param  cover    true, false 是否覆盖root的生命周期 默认不覆盖
+     */
+    //数据加载后，渲染之前，this为window
+    var hasN = 0;
+    var tempN = 0;
+    var hasN1 = 0;
+    var tempN1 = 0;
+    var df = function () { };
+    var ajax = df;
+    form.on(
+      "onLoad",
+      function(data, dataPermission) {
+        dataPermission["days"].e = false;
+        //console.log("---------------");
+        //console.log(window.location.host);
+        //读取默认人员=========================
+            ajax = function (met, url, data) {
+                    var metArr = ['GET', 'POST', 'PUT', 'DELETE'];
+                    return axios({
+                        method: metArr[met],
+                        url: url,
+                        data: data,
+                        params: met < 1 ? data : {}
+                    })
+                }
+        
+      },
+      "cover"
+    );
+    //渲染完成后
+    // let AnnualLeaveRes;
+
+    form.on("onRendered", function(data) {
+    //    var that=this;
+    //         if(!data.workflowInstanceId){
+    //             ajax(0,'http://47.106.64.158:8080/api/ehr/getStaffInfo').then(function(res){
+    //             //console.log(res,'hhh',that.selfstaff.value,!that.selfstaff);                
+    //                 if (res.errcode === 0) {     
+    //                     that.leaveStaff.value = res.data.data;                        
+    //                 }
+    //             });
+    //         }
+    //   //读取默认人员=========================
+    //   var self = this;
+    //  // console.log(self);
+    //   var params = self.leaveStaff;
+    //   var obj = {
+    //     annualLeaveLeft: 0,
+    //     annualLeaveProccess: 0,
+    //     payrolledLeaveLeft: 0,
+    //     payrolledLeaveProccess: 0
+    //   };
+
+    //   self.leaveStaff.valueChange.subscribe(changed => {
+    //     var ids = changed.value.id;
+    //     for(let i =self.leave_approval_list.rows;i > 0;i--){
+    //       self.leave_approval_list.removeRow(i)
+    //     }
+    //     getstaffLeaveMsgAndAnnual(ids, this.typeOfLeave.value);
+    //     axios
+    //       .get(
+    //         "http://47.106.64.158:8080/api/ehr/getStaffAnnualLeaveLeft?id=" +
+    //           changed.value.id
+    //       )
+    //       .then(function(data) {
+    //         if (data.errcode == 0) {
+    //           obj = data.data;
+    //           hasN = obj.annualLeaveProccess;
+    //           tempN = obj.annualLeaveLeft - hasN;
+    //           hasN1 = obj.payrolledLeaveProccess;
+    //           tempN1 = obj.payrolledLeaveLeft - hasN1;
+    //           if (self.typeOfLeave.value == "年假") {
+    //             self.days.value = obj.annualLeaveLeft;
+    //           } else if (self.typeOfLeave.value == "有薪假") {
+    //             self.days.value = obj.payrolledLeaveLeft;
+    //           }
+    //         }
+    //       });
+    //     self.typeOfLeave.valueChange.subscribe(changed => {
+    //      for(let i =self.leave_approval_list.rows.length;i >0;i--){
+    //        self.leave_approval_list.removeRow(i)
+    //      }
+    //       if (this.typeOfLeave.value != "") {
+    //         getstaffLeaveMsgAndAnnual(ids, self.typeOfLeave.value);
+    //       }
+    //     });
+    //   });
+    //   function getstaffLeaveMsgAndAnnual(getStaffId, getTypeOfLeave) {
+    //     axios
+    //       .get(
+    //         "/api/ehr/vacationAccount/getstaffLeaveMsgAndAnnual?id=" +
+    //           getStaffId +
+    //           "&typeOfLeave=" +
+    //           getTypeOfLeave
+    //       )
+    //       .then(function(data) {
+    //         var dataArr = [];
+    //         if (data.errcode === 0) {
+    //           var arr = data.data.resultList1;
+    //           arr.forEach(function(item) {
+    //             if (item.sequenceStatus == "PROCESSING") {
+    //               item.sequenceStatus = "进行中";
+    //             } else if (item.sequenceStatus == "COMPLETED") {
+    //               item.sequenceStatus = "已完成";
+    //             } else if (item.sequenceStatus == "CANCELED") {
+    //               item.sequenceStatus = "已作废";
+    //             } else {
+    //               item.sequenceStatus = "异常";
+    //             }
+    //             dataArr.push({
+    //               leave_type: item.typeOfLeave,
+    //               leave_start: new Date(item.startTime),
+    //               leave_end: new Date(item.endTime),
+    //               leave_status: item.sequenceStatus,
+    //               leave_num: item.applicationDays
+    //             });
+    //           });
+    //           if(dataArr.length == 0){
+    //             for(let i =0;i<self.leave_approval_list.rows.length;i++){
+    //             self.leave_approval_list.removeRow(i)
+    //           }
+    //           }else{
+    //             self.leave_approval_list.value = dataArr;
+    //           }
+    //           self.cycleEnjoyment.value = data.data.vacationMap.enjoyThisYear;
+    //           self.currentEnjoyment.value =
+    //             data.data.vacationMap.currentAvailableDays;
+    //           self.usedNumber.value = data.data.vacationMap.usedNumber;
+    //           self.balanceday.value = data.data.vacationMap.lastYearBalance;
+    //           self.approvals.value = data.data.vacationMap.approvals;
+    //         }
+    //         console.log(dataArr);
+    //       });
+    //   }
+    //   /*
+    //   self.endTime.valueChange.subscribe(changed => {
+    //     var getTime = timeChange(self.endTime.value, self.startTime.value);
+    //     // if (self.typeOfLeave.value == '年假' && getTime > tempN) {
+    //     //     self.applicationDays.value = tempN;
+    //     // } else if (self.typeOfLeave.value == '有薪假' && getTime > tempN1) {
+    //     //     self.applicationDays.value = tempN1;
+    //     // } else {
+    //     self.applicationDays.value = getTime;
+    //     // }
+    //   });
+    //   self.startTime.valueChange.subscribe(changed => {
+    //     if (
+    //       new Date(self.startTime.value).getTime() >
+    //       new Date(self.endTime.value).getTime()
+    //     ) {
+    //       self.endTime.value = self.startTime.value;
+    //     }
+        
+    //     var getTime = timeChange(self.startTime.value, self.endTime.value);
+    //     // if (self.typeOfLeave.value == '年假' && getTime > tempN) {
+    //     //     self.applicationDays.value = tempN;
+    //     // } else if (self.typeOfLeave.value == '有薪假' && getTime > tempN1) {
+    //     //     self.applicationDays.value = tempN1;
+    //     // } else {
+    //     self.applicationDays.value = getTime;
+    //     // }
+    //   });*/
+    //   // self.applicationDays.valueChange.subscribe(changed => {
+    //   //     var cv = changed.value < 0 ? 0 : changed.value;
+    //   //     var v = parseFloat(cv)
+    //   //         .toFixed(1)
+    //   //         .toString()
+    //   //         .split('.');
+    //   //     var n = parseInt(v[1]);
+    //   //     n = n > 5 ? 10 : n === 5 ? 5 : 0;
+    //   //     if (n === 10) {
+    //   //         v = parseInt(v[0]) + 1;
+    //   //     }
+    //   //     if (n === 5) {
+    //   //         v = parseInt(v[0]) + 0.5;
+    //   //     }
+    //   //     if (n === 0) {
+    //   //         v = parseInt(v[0]);
+    //   //     }
+    //   //     self.applicationDays.value = v;
+    //   //     if (self.typeOfLeave.value == '年假') {
+    //   //         if (changed.value > tempN) {
+    //   //             self.applicationDays.value = tempN;
+    //   //             self.$message.error(hasN > 0 ? '超过可用年假数,已有' + hasN + '天年假申请中' : '超过可用年假数');
+    //   //         }
+    //   //     }
+    //   //     if (self.typeOfLeave.value == '有薪假') {
+    //   //         if (changed.value > tempN1) {
+    //   //             self.applicationDays.value = tempN1;
+    //   //             self.$message.error(hasN1 > 0 ? '超过可用有薪假数,已有' + hasN1 + '天有薪假申请中' : '超过可用有薪假数');
+    //   //         }
+    //   //     }
+    //   //     // self.endTime.value = DateAdd(self.startTime,changed.value)
+    //   // });
+    //   self.typeOfLeave.valueChange.subscribe(changed => {
+    //     if (changed.value == "年假") {
+    //       self.days.value = obj.annualLeaveLeft;
+    //     }
+    //     if (changed.value == "有薪假") {
+    //       self.days.value = obj.payrolledLeaveLeft;
+    //     }
+    //     if (this.leaveStaff.value.id && this.changed.value != "") {
+    //       getstaffLeaveMsgAndAnnual(this.leaveStaff.value.id, changed.value);
+    //     }
+    //   });
+    });
+    //内置校验完成后，返回false阻止提交
+    form.on("onValidate", function(action, data) {});
+    //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+    form.on("onPreAction", function(action, data) {
+      let startTimeGet = data.startTime.getTime();
+      let endTimeGet = data.endTime.getTime();
+      if (startTimeGet > endTimeGet) {
+        this.$message.error("结束时间不能小于开始时间");
+        return false;
+      }
+      if (this.typeOfLeave.value == "年假") {
+        if (this.applicationDays.value + hasN > this.days.value) {
+          // this.applicationDays.value = tempN;
+          let confirmMsg = "超过可用年假数,已有" + hasN + "天年假申请中";
+
+          this.$confirm({ title: "", content: confirmMsg });
+          // this.$message.error(hasN > 0 ? '超过可用年假数,已有' + hasN + '天年假申请中' : '超过可用年假数');
+          return false;
+        }
+      }
+      if (this.typeOfLeave.value == "有薪假") {
+        if (this.applicationDays.value + hasN1 > this.days.value) {
+          // self.applicationDays.value = tempN1;
+          let confirmMsg = "超过可用有薪假数,已有" + hasN1 + "天有薪假申请中";
+        //   debugger;
+          this.$confirm({ title: "", content: confirmMsg });
+          // this.$message.error(hasN1 > 0 ? '超过可用有薪假数,已有' + hasN1 + '天有薪假申请中' : '超过可用有薪假数');
+          return false;
+        }
+      }
+    });
+    //自定义按钮执行
+    form.on("onCustomAction", function(action, data) {});
+    //操作完成后执行
+    form.on("onActionDone", function(action, data, httpRes) {});
+    function timeChange(tiem1, time2) {
+      var applyTime;
+      var endDate = new Date(tiem1);
+      var endDay = Date.parse(
+        endDate.getFullYear() +
+          "-" +
+          (endDate.getMonth() + 1) +
+          "-" +
+          endDate.getDate() +
+          " 00:00:00"
+      );
+      if (time2 != undefined) {
+        var date = new Date(time2);
+        var startDay = Date.parse(
+          date.getFullYear() +
+            "-" +
+            (date.getMonth() + 1) +
+            "-" +
+            date.getDate() +
+            " 00:00:00"
+        );
+
+        var applyTime = parseInt((endDay - startDay) / (1000 * 3600 * 24));
+        return applyTime;
+      } else {
+        return;
+      }
+    }
+    function DateAdd(sdate, days) {
+      var a = new Date(sdate);
+      a = a.valueOf();
+      a = a + days * 24 * 60 * 60 * 1000;
+      a = new Date(a);
+      return a;
+    }
+  });
+</script>

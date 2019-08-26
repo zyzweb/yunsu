@@ -1,0 +1,270 @@
+<style>
+    #apartmentProp .sheet-center table tr th:nth-child(n+1):nth-child(-n+4) {
+        width: 300px;
+        max-width: 300px;
+        min-width: 300px;
+    }
+    #apartmentProp .sheet-center table tr th:nth-child(n+1):nth-child(odd):nth-child(-n+4) {
+        display: none
+    }
+    #apartmentProp .sheet-center table tr td:nth-child(n+1):nth-child(-n+4) {
+        width: 300px;
+        max-width: 300px;
+        min-width: 300px;
+    }
+    #apartmentProp .sheet-center table tr td:nth-child(n+1):nth-child(odd):nth-child(-n+4) {
+        display: none;
+    }
+    #apartmentProp .sheet-center table tr th:nth-child(5) {
+        width: 80px;
+        max-width: 80px;
+        min-width: 80px;
+    }
+    #apartmentProp .sheet-center table tr td:nth-child(5) {
+        width: 80px;
+        max-width: 80px;
+        min-width: 80px;
+    }
+
+    #apartmentProp .sheet .sheet__cols .sheet__col:nth-child(n+1):nth-child(-n+4) {
+        width: 300px;
+        max-width: 300px;
+        min-width: 300px;
+    }
+    #apartmentProp .sheet .sheet__cols .sheet__col:nth-child(n+1):nth-child(odd):nth-child(-n+4) {
+        display: none;
+    }
+    #apartmentProp .sheet .sheet__cols .sheet__col:nth-child(5) {
+        width: 80px;
+        max-width: 80px;
+        min-width: 80px;
+    }
+    #apartmentProp .scrollbar .sheet__cols .sheet__col:nth-child(1) {
+        width: 375px;
+    }
+</style>
+
+<section id="toolbar"></section>
+
+<section type="template" id="template">
+<a-row>
+    <a-col>
+        <a-title key="2031555324831118" data-name="绩效拟定"></a-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-create-by key="creater" data-name="创建人" data-visible="false"></a-create-by>
+    </a-col>
+    <a-col>
+        <a-created-time key="createdTime" data-name="创建时间" data-visible="false"></a-created-time>
+    </a-col>
+    <a-col>
+        <a-sequence-no key="sequenceNo" data-name="单据号" data-visible="false"></a-sequence-no>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="zhuti" data-name="主题" data-visible="false" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="staffName" data-name="员工姓名" data-style="" data-query-code="YGLB" data-schema-code="staffInfo" data-mappings="department:{belongto};staffNo:{staffNo};staffName:{yuangongname};performanceType:{performanceType};ranknum:{jibie};position:{position};PositionType:{checkObjecttype};TextperformanceType:{TextperformanceType}"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-text key="staffNo" data-name="员工工号" data-default-value=""></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="performanceType" data-name="考核类型" data-query-code="JXZBLX" data-schema-code="typesOfPerformanceIndicat"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-association-form key="checkCycle" data-name="考核周期" data-query-code="GLJXZT" data-schema-code="jixioakaohe" data-conditions="performanceTypename:{TextperformanceType}" data-mappings="startTime:{checkStartDate};endTime:{checkEndDate};assessmentTopics:{zhuti}" data-select-mode="dropdown"></a-association-form>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="TextperformanceType" data-name="绩效类型" data-visible="false"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-user-selector key="belongto" data-name="所属部门" data-dept-visible="org"></a-user-selector>
+    </a-col>
+    <a-col>
+        <a-association-form key="position" data-name="职位" data-query-code="position" data-schema-code="position"></a-association-form>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-date key="checkStartDate" data-name="考核开始日期" data-display-formula="{TextperformanceType} == '试用期考核'" data-default-value=""></a-date>
+    </a-col>
+    <a-col>
+        <a-date key="checkEndDate" data-name="考核结束日期" data-display-formula="{TextperformanceType} == '试用期考核'" data-default-value="null"></a-date>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-radio key="checkObjecttype" data-name="考核对象类型" data-default-value="部门成员" data-options="高管;部门负责人;部门成员"></a-radio>
+    </a-col>
+    <a-col>
+        <a-user-selector key="lineBusinessVerifier" data-name="业务线核定人" data-dept-visible="user" data-default-value=""></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-sheet key="apartmentProp" data-name="指标明细" data-rows="1" data-show-total="false">
+            <a-columns>
+                <a-text key="targetItemn" width="150" data-name="原指标项" data-visible="false" data-style=""></a-text>
+                <a-textarea key="targetNum" width="300" data-name="指标项" data-default-value=""></a-textarea>
+                <a-text key="graed" width="150" data-name="原评分标准" data-visible="false"></a-text>
+                <a-textarea key="graedText" width="300" data-name="评分标准" data-default-value=""></a-textarea>
+                <a-number key="proportion" width="150" data-name="权重" data-style=""></a-number>
+                <a-number key="leaderProportion" width="150" data-name="直接上级占比"></a-number>
+                <a-number key="apatrmentProp" width="150" data-name="关联部门占比"></a-number>
+                <a-user-selector key="apartmentLeader" width="200" data-name="关联部门负责人" data-style="" data-dept-visible="user" data-default-value=""></a-user-selector>
+            </a-columns>
+            <a-totals>
+                <a-total key="stat-Number1555379118129" column-key="Number1555379118129" data-statistic-mode="sum" data-format="integer" data-name="统计"></a-total>
+                <a-total key="stat-Number1555379170913" column-key="proportion" data-statistic-mode="none" data-format="none" data-name="权重合计"></a-total>
+                <a-total key="stat-Number1555379208920" column-key="leaderProportion" data-statistic-mode="none" data-format="none" data-name="统计"></a-total>
+                <a-total key="stat-Number1555379233495" column-key="apatrmentProp" data-statistic-mode="none" data-format="none" data-name="统计"></a-total>
+            </a-totals>
+        </a-sheet>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-description key="2021555379026648" data-name="说明：指标项目直接关联职位的绩效指标， 可以有选择的进行微调"></a-description>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-number key="totalProp" data-name="权重合计" data-compute-formula="sum({apartmentProp.proportion})"></a-number>
+    </a-col>
+    <a-col>
+        <a-user-selector key="immediateSupervisor" data-name="直接上级" data-required-formula="{targetStatus} == '绩效拟定'" data-dept-visible="user" data-default-value=""></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-radio key="targetStatus" data-name="绩效状态" data-default-value="绩效拟定" data-options="绩效拟定;绩效审核;绩效确认"></a-radio>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="jobLevel1" data-name="职级" data-visible="false"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-user-selector key="yuangongname" data-name="员工" data-visible="false" data-dept-visible="user"></a-user-selector>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-number key="jibie" data-name="级别数值" data-visible="false"></a-number>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-comment key="ApprovalOpinion1562404599677" data-name="必填审批意见"></a-comment>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="ShortText1562404656662" data-name="必填数据项"></a-text>
+    </a-col>
+</a-row>
+</section>
+
+<script id="customScript">
+    (function(form){
+        /**
+         * 用户自定义JS区域
+         */
+        /**
+         * 事件绑定，form.on
+         * @param eventType 事件类型
+         * @params function 事件
+         * @param  cover    true, false 是否覆盖root的生命周期 默认不覆盖 
+         */
+        var submitBtnCould = true;
+        //数据加载后，渲染之前，this为window
+        form.on('onLoad',function(data, dataPermission){
+        },'cover');
+        //渲染完成后
+        form.on('onRendered',function(data){
+            var self = this;
+            var getStaffId;
+            self.staffName.valueChange.subscribe(function(changed){
+                var staffId = changed.value.id || '';
+                getStaffId = staffId;
+                axios.get(window.config.apiHost + '/api/ehr/getStaffAndPerformanceIndicator', {
+                    params: {
+                        id: staffId
+                    }
+                })
+                .then(function(res){
+                    var indicators = [];
+                    if(res.errcode === 0){
+                        var resData = res.data.data || {};
+                        self.staffNo.value = resData.staffNo; // 赋值员工工号
+                        console.log(2,resData.position.performanceIndicator)
+                        if(!resData.position.performanceIndicator) return;
+                        var performanceIndicatorArr = resData.position.performanceIndicator
+                        performanceIndicatorArr.forEach(function(indicator){
+                            indicators.push({
+                                targetItemn: indicator.hrDutyID,
+                                targetNum: indicator.hrDutyID,//指标项
+                                graed: indicator.hrPoint, // 评分标准
+                                graedText: indicator.hrPoint, // 评分标准
+                                proportion: indicator.hrDutyDefinition, // 权重
+                            })
+                        });
+                        self.apartmentProp.value = indicators; // 赋值指标明细
+                        
+                        self.performanceType.value = res.data.data.performanceType; // 赋值考核类型
+                        
+                    }
+                })
+            });
+            self.checkCycle.valueChange.subscribe(function(changed){
+                var checkThemeId = changed.value.id || '';
+                axios.get('https://apis.eip.authine.com/api/ehr/getPerformanceStatus', {
+                    params: {
+                        id: getStaffId,
+                        checkThemeId: checkThemeId,
+                        queryCode: 1,
+                    }
+                })
+                .then(function(res){
+                    if(res.errcode === 0){
+                        if(res.data.flag == 1){
+                            submitBtnCould = true;
+                        }else {
+                            submitBtnCould = false;
+                        }
+                    }
+                })
+            });
+        });
+        //内置校验完成后，返回false阻止提交
+        form.on('onValidate',function(action,data){});
+        //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+        form.on('onPreAction',function(action,data){
+            if(!submitBtnCould){
+                this.$message.error("当前员工的绩效拟定已提交");
+                return false
+            }else {
+                return true
+            }
+        });
+        //自定义按钮执行
+        form.on('onCustomAction',function(action,data){});
+        //操作完成后执行
+        form.on('onActionDone',function(action,data,httpRes){});
+    })
+</script>

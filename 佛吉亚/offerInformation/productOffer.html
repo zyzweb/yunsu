@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>全局自定义模板</title>
+    <style>
+        .btnBox {
+            width: 100%;
+            height: 32px;
+            margin-bottom: 30px;
+        }
+        .ueditorBox {
+            position: relative;
+            width: 96%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .btnSure {
+            background: #008cff;
+            padding: 3px 14px;
+            border-radius: 4px;
+            float: right;
+            cursor: pointer;
+            margin-right: 20px;
+            color: #FFF;
+        }
+        .ueditorInterval {
+            width: 100%;
+            height: 2rem;
+            border: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        .ueditorEmailBox {
+            padding-right: 16px;
+        }
+        .fjyLogo {
+            width: 120px;
+            display: inline-block;
+        }
+        .comFireOutBox {
+            width: 100%;height: 100%;position: absolute;top: 0px;left: 0px;
+            z-index: 999;background: rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .popupBox {
+            width: 20rem;
+            max-width: 100%;
+            background: #FFF;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .popupMain {
+            padding: 1rem 0rem;
+        }
+        .popupBtn {
+            width: 4rem;
+            height: 2rem;
+            margin: 0rem 0.5rem;
+            background: #008cff;
+            padding: 0px;
+            box-shadow: none;
+            border: none;
+            color: #FFF;
+            cursor: pointer;
+        }
+        
+        .emailAddAll {
+            display: flex;
+            font-size: 0.8rem;
+        }
+        .emailAddInpBox {
+            position: relative;
+            left: 10px;
+        }
+        .emailAddInp {
+            margin: 0px;
+            padding: 0px;
+            border: 1px solid #AAA;
+            height: 1.4rem;
+        }
+        .emailAddTip {
+            position: absolute;
+            top: 1.3rem;
+            left: 0px;
+            width: 100%;
+            color: #F00;
+            font-size: 0.6rem;
+        }
+        .msgBox {
+            width: 100%;
+            position: absolute;
+            top: 10%;
+            text-align: center;
+            z-index: 9;
+        }
+        .msgMain {
+            font-size: 1rem;
+            width: 40%;
+            margin: auto;
+            background: rgba(238, 238, 238,0.5);
+            padding: 15px 0px;
+        }
+        .offerSendAttachment{
+            border-radius: 6px;
+            border: 1px solid #eee;
+            padding: 8px 16px;
+            background: #2970ff;
+            color: #fff;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .offerSendAttachment-box{
+            padding-bottom: 16px;
+            padding: 16px;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+    <!--自定义事件配置-->
+
+<!-- 配置文件 -->
+<script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="ueditor/jquery.min.js"></script>
+</head>
+<body>
+    <div class="btnBox">
+        <div class="btnSure" id="btnSure">Submit</div>
+        <div class="btnSure" id="btnStaging">Save</div>
+        <div class="btnSure" id="btnBack">Return</div>
+    </div>
+    <div class="offerHtmlBox hide"> 
+        <div id="zhOffer"> 
+            
+        </div>
+    </div>
+    <div class="memoHtmlBox hide"> 
+        <div id="memoHtmlBox"> 
+            
+        </div>
+    </div>
+    <div class="emailHeaderBox hide" id="emailHeaderBox"> 
+        <div style="font-size: 1rem;"> 
+            <div><span id="emailName"></span></div>  
+            <div>&nbsp;</div>  
+            <div>Following the interview before, we are pleased to offer you the position of <span id="emailPosition"></span> in Faurecia.</div>
+        </div>
+    </div>
+    <div>&nbsp;</div> 
+    <div class="emailBodyBox hide" id="emailBodyBox" style="font-size: 1rem"> 
+        <div style="font-size: 1rem;">Enclosed please find your offer letter. Shall you find the terms and conditions satisfied and acceptable, please send feedback to me in two ways.</div>    
+        <div>
+            1.	PC: By click link <a style="cursor: pointer" href="http://39.108.48.97/mobile/#/offerSure?type=1">http://39.108.48.97/mobile/#/offerSure?type=1</a>
+        </div>
+        <div>
+            2.	Mobile: Scan two-dimensional code
+        </div>
+        <div>&nbsp;</div> 
+        <div>
+            Please contact me directly if you have any questions. 
+        </div>
+        <div>&nbsp;</div> 
+        <div>
+            Welcome you to join Faurecia (China) Holding and we look forward to meeting you in the office!
+        </div>
+        <div id="offer" style="padding-left: 1rem;font-size: 1rem;margin-top: 0.8rem;">
+            <img src="http://39.108.48.97/offerSure.png" alt="" id="eweiCode" style="width: 190px;display: inline-block;"/>
+        </div>
+        <div>&nbsp;</div> 
+        <div>&nbsp;</div> 
+        <div>Best Regards</div> 
+        <div>
+            <img src="http://39.108.48.97/fjyLogo1.jpg" alt="" class="fjyLogo" id="fjyLogo1" style="width: 120px;display: inline-block;"/><img src="http://39.108.48.97/fjyLogo2.png" class="fjyLogo"  alt="" id="fjyLogo2" style="width: 120px;display: inline-block;"/>
+        </div> 
+    </div>
+    <div class="ueditorInterval" style="font-size: 1rem;line-height: 1.5rem;">offer：</div>
+    <div class="ueditorBox">
+        <script id="container" name="content" type="text/plain" >
+            
+        </script>
+    </div>
+    <div class="ueditorInterval"></div>
+    <div class="offerSendAttachment-box">
+        <a target="_blank" id="offerSendAttachmentDown" class="offerSendAttachment hide">Offer Download</a>
+    </div>
+    <div class="ueditorInterval hide" id="memoTip"  style="font-size: 1rem;line-height: 1.5rem;">Memo：</div>
+    <div class="ueditorBox ueditorMemoBox">
+        <script id="containerMemo" name="content" type="text/plain" > </script>
+    </div>
+    <div class="offerSendAttachment-box">
+        <a target="_blank" id="offerSendAttachmentDown1" class="offerSendAttachment hide">Memo Download</a>
+    </div>
+    <div class="ueditorInterval"></div>
+    <div class="ueditorInterval"  style="font-size: 1rem;line-height: 1.5rem;">Email：</div>
+    <div class="ueditorBox ueditorEmailBox">
+        <script id="containerEmail" name="content" type="text/plain" >
+            
+        </script>
+    </div>
+    <div class="ueditorInterval"></div>
+    <div class="comFireOutBox hide">
+        <div class="popupBox">
+            <div class="popupMain">Please make sure the offer has been validated internally and the key information(Salary, On-board date, etc. ) is aligned with previous screen.</div>
+            <div class="popupBtnBox">
+                <button class="popupBtn popupBtnSure" id="popupBtnSure">Sure</button>
+                <button class="popupBtn popupBtnCancel" id="popupBtnCancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="ueditorInterval emailAddAll"  style="font-size: 1rem;line-height: 1.5rem;">
+        <div class="emailAdd">
+            Copy mailbox: 
+        </div>
+        <div class="emailAddInpBox">
+            <input type="text" class="emailAddInp" id="emailAddInp">
+            <div class="emailAddTip">请输入抄送邮箱用 ， 隔开</div>
+        </div>
+    </div>
+    <div class="ueditorInterval"></div>
+    <div class="ueditorInterval"></div>
+    <div class="msgBox hide" id="msgBox">
+        <p class="msgMain" id="msgMain"></p>
+    </div>
+<script src="../config.js"></script>
+<script >
+    var sendUrl = window.config.apiHost;
+    var pdfUrl = window.config.portalHost;
+    // var sendUrl = "http://39.108.48.97:8080";
+    // var pdfUrl = "http://39.108.48.97";
+    var productOffer = JSON.parse(localStorage.getItem('productOffer'));
+    var enMonArr = {"01":"Jan","02":"Feb","03":"Mar","04":"Apr","05":"May","06":"Jun","07":"Jul","08":"Aug","09":"Spt","10":"Oct","11":"Nov","12":"Dec"};
+    var enNum = {"1":"one","2":"two","3":"three","4":"four","5":"five","6":"six","7":"seven","8":"eight","9":"nine",}
+    var chNum = {"1":"一","2":"二","3":"三","4":"四","5":"五","6":"六","7":"七","8":"八","9":"九",}
+    var loadHtml = productOffer.offerType === "CIIC Offer" ? "zhOffer.html" : "enOffer.html";
+
+    $("#zhOffer").load(loadHtml, function(){ });
+
+    let filePathGet = "";
+    if(productOffer.offerSendAttachment.length > 0){
+        filePathGet = "/api/aliyun/download?refId=" 
+            + productOffer.offerSendAttachment[0].refId + "&amp;access_token="
+            + localStorage.getItem("token")
+    }
+    if(window.parent.location.href.indexOf("objectId") > 0){
+        if(productOffer.offerSendAttachment.length > 0){
+            filePathGet = pdfUrl + "/api/aliyun/download?refId=" 
+                + productOffer.offerSendAttachment[0].refId + "&amp;access_token="
+                + localStorage.getItem("token");
+            $("#offerSendAttachmentDown")[0].href = filePathGet
+        }else {
+           $("#offerSendAttachmentDown")[0].href = pdfUrl + productOffer.pdfPath 
+        }
+        
+        $("#offerSendAttachmentDown, #offerSendAttachmentDown1").removeClass("hide");
+    }else {
+        $("#offerSendAttachmentDown, #offerSendAttachmentDown1").addClass("hide");
+    }
+
+   
+
+    
+    let memorandumPdfPathBox = $('.offerSendAttachment-box').eq(1);
+    productOffer.memorandumPdfPath == "" ? $("#offerSendAttachmentDown1")[0].href = "" : $("#offerSendAttachmentDown1")[0].href = pdfUrl + productOffer.memorandumPdfPath;
+
+    function offerDataChange(){
+        if(productOffer.offerType == "CIIC Offer"){
+            $("#distributeOfferDate").html(productOffer.distributeOfferDate?zhDate(productOffer.distributeOfferDate):"") 
+            if(productOffer.sex == "男" || productOffer.sex == "Male"){
+                $("#emailName").html("Dear Mr." + productOffer.enlastname)
+                $("#gender").html(productOffer.enfirstname + " " + productOffer.enlastname + "先生")
+            }else {
+                $("#gender").html(productOffer.enfirstname + " " + productOffer.enlastname + "女士") 
+                $("#emailName").html("Dear Mrs." + productOffer.enlastname)
+            }
+            $("#arrivalDate").html(productOffer.arrivalDate?zhDate(productOffer.arrivalDate):"")
+            $("#contractStartDate").html(productOffer.contractStartDate?zhDate(productOffer.contractStartDate):"")
+            // if(productOffer.typeOfContractTerm != "Indefinite term"){
+                $("#contractEndDate").html(productOffer.contractEndDate?zhDate(productOffer.contractEndDate):"")
+            // }
+            if(productOffer.contractDeadline && productOffer.contractDeadline != ""){
+                $(".contractDuty").html(chNum[productOffer.contractDeadline] + "年")
+            }
+            
+            $("#entryDate").html(productOffer.arrivalDate?zhDate(productOffer.arrivalDate):"")
+            $(".workplace").html(productOffer.workplacid.name?productOffer.workplacid.name.split("-")[0].split(" ")[0]:"")
+            if(productOffer.bonusType.name == "FCB"){
+                $(".fcbType").html("FCB");
+            }else {
+                $(".fcbType").html("FVC");
+            }
+            if(productOffer.offerSignBackDate && productOffer.distributeOfferDate){
+                var twoDayTimestamp1 = new Date(productOffer.offerSignBackDate.split(" ")[0]).getTime();
+                var twoDayTimestamp2 = new Date(productOffer.distributeOfferDate.split(" ")[0]).getTime()
+                var twoDayTimestamp = parseInt((twoDayTimestamp1 - twoDayTimestamp2)*100)/100;
+                
+                twoDayTimestamp = twoDayTimestamp/(24*3600*1000) < 0?-1 * twoDayTimestamp/(24*3600*1000):twoDayTimestamp/(24*3600*1000)
+
+                twoDayTimestamp = (twoDayTimestamp > twoDayTimestamp%1)||(twoDayTimestamp == 0)?twoDayTimestamp+1:twoDayTimestamp
+                $(".twoDays").html(parseInt(twoDayTimestamp))
+            }
+            // $(".twoDays").html(productOffer.offerSignBackDate?enDate1(productOffer.offerSignBackDate):"")
+        }else {
+            if(productOffer.sex == "Male"){
+                $("#emailName").html("Dear Mr." + productOffer.enlastname)
+            }else {
+                $("#emailName").html("Dear Mrs." + productOffer.enlastname)
+            }
+            $("#distributeOfferDate").html(productOffer.distributeOfferDate?enDate1(productOffer.distributeOfferDate):"")
+            $("#gender").html(productOffer.enlastname+productOffer.enfirstname) 
+            $("#arrivalDate").html(productOffer.arrivalDate?enDate1(productOffer.arrivalDate):"")
+            $("#contractStartDate").html(productOffer.contractStartDate?enDate2(productOffer.contractStartDate):"")
+            // if(productOffer.typeOfContractTerm != "Indefinite term"){
+                $("#contractEndDate").html(productOffer.contractEndDate?enDate2(productOffer.contractEndDate):"")
+            // }
+            if(productOffer.contractDeadline && productOffer.contractDeadline != ""){
+                if(productOffer.contractDeadline == 1){
+                    $(".contractDuty").html(enNum[productOffer.contractDeadline] + " ( " + productOffer.contractDeadline+ " ) year")
+                }else {
+                    $(".contractDuty").html(enNum[productOffer.contractDeadline] + " ( " + productOffer.contractDeadline+ " ) years")
+                }
+                
+            }
+            var timestamp1 = new Date(productOffer.distributeOfferDate).getTime();
+            var timestamp2 = timestamp1+(48*3600*1000);
+            var twoDaysTime = timetrans(timestamp2)
+            $("#twoDays").html(twoDaysTime);
+            if(productOffer.transportationAllowance == "Y"){
+                if(productOffer.allowanceType == "Fill in the amount"){
+                    $(".allowanceType0").remove();
+                    $("#allowanceAmount").html(productOffer.allowanceAmount)
+                }else {
+                    $(".allowanceType1").remove();
+                }
+            }else {
+                $(".allowanceType0").remove();
+                $(".allowanceType1").remove();
+                $(".enallowanceType").remove();
+            }
+            if(productOffer.bonusType.name == "FCB"){
+                $(".bonusType1").remove();
+            }else {
+                $(".bonusType0").remove();
+            }
+            
+            if(productOffer.signOn == "Y"){
+                $(".signonBonus").html(productOffer.signonBonus);
+                $(".signonDate").html(productOffer.signonDate?enDate1(productOffer.signonDate):"");
+            }else {
+                $(".signOn").remove();
+            }
+            if(productOffer.medicalInsurance != "Y"){
+                $(".enMedicalInsurance").remove();
+            }
+            
+            if(productOffer.relocationBenefit != "Y"){
+                $(".enRelocationBenefit").remove();
+            }
+            
+            if(productOffer.hireexpat == "Y"){
+                $(".PensionScheme").html(productOffer.PensionScheme);
+                $(".HousingAllowance").html(productOffer.HousingAllowance);
+                $(".HomeVisit").html(productOffer.HomeVisit);
+                $(".incomingTax").html(productOffer.incomingTax);
+            }else {
+                $(".hireexpat").remove();
+            }
+            if(productOffer.typeOfContractTerm == "Indefinite term"){
+                $(".notIndefinite").remove();
+            }else {
+                $(".isIndefinite").remove();
+            }
+            $(".twoDays").html(productOffer.offerSignBackDate?enDate1(productOffer.offerSignBackDate):"")
+            $("#emailName").html("Dear" + productOffer.enlastname + " " + productOffer.enfirstname)
+            // $("#entryDate").html(productOffer.arrivalDate?zhDate(productOffer.arrivalDate):"")
+            $(".workplace").html(productOffer.workplacid.name?productOffer.workplacid.name.split("-")[1]:"")
+        }
+        
+        if(productOffer.communicationAllowance == "250 CNY/M"){
+            $(".companyIph").remove();
+        }else if(productOffer.communicationAllowance == "Company Mobile"){
+            $(".selfIph").remove();
+        }else {
+            $(".communicationAllowance").remove();
+            $(".communicationAllowance").remove();
+            $(".companyIph").remove();
+            $(".selfIph").remove();
+        }
+        $(".ratio").html(productOffer.ratio)
+        $("#basicSalary").html(productOffer.basicSalary)
+        $("#directManager").html(productOffer.creater[0].name)
+        $("#probationPeriod").html(productOffer.probationPeriod)
+        $("#positionName").html(productOffer.positionName)
+        $("#emailPosition").html(productOffer.positionName) 
+    }
+    
+    function zhDate(date){
+        var d = date.split(" ")[0];
+        return d.split("-")[0]+"年"+d.split("-")[1]+"月"+d.split("-")[2]+"日"
+    }
+    function enDate1(date){
+        var d = date.split(" ")[0];
+        var dayShow = dayTipShow(d.split("-")[2])
+        return enMonArr[d.split("-")[1]]+" "+d.split("-")[2]+dayShow+","+d.split("-")[0]
+    }
+    function enDate2(date){
+        var d = date.split(" ")[0];
+        var dayShow = dayTipShow(d.split("-")[2])
+        return enMonArr[d.split("-")[1]]+" "+d.split("-")[2]+dayShow+" "+d.split("-")[0]
+    }
+    function timetrans(date){
+        var date = new Date(date)
+        var Y = date.getFullYear();
+        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1);
+        var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+        var supTip = dayTipShow(D);
+        
+        return D+supTip+M+","+Y;
+    }
+    function dayTipShow(day){
+        day = parseInt(day);
+        if(day<4){
+            return showTh(day);
+        }else if(20<day && day<24){
+            return showTh(day%10);
+        }else if(day == 31){
+            return '<sup>st</sup>'
+        }else {
+            return '<sup>th</sup>'
+        }
+    }
+    function showTh(day){
+        if(day == 1){
+            return '<sup>st</sup>'
+        }else if(day == 2){
+            return '<sup>nd</sup>'
+        }else {
+            return '<sup>rd</sup>'
+        }
+    }
+    
+    var token = 'Bearer '+localStorage.getItem('token')
+    
+    var ue = UE.getEditor('container');
+    var ueEmail = UE.getEditor('containerEmail');
+    var ueMemorandum = UE.getEditor('containerMemo');
+    
+    var zhOffer = document.getElementById("zhOffer");
+    var emailHtmlStr = "";
+    function emailShow(){
+        ueEmail.ready(function() {
+            ueEmail.setHeight(400);
+            // productOffer.emailContent != "" && productOffer.emailContent != "null" && productOffer.emailContent != undefined
+            if( productOffer.emailContent &&　productOffer.isHistroy ){
+                emailHtmlStr = productOffer.emailContent;
+            }else {
+                emailHtmlStr = $("#emailHeaderBox").html() + $("#emailBodyBox").html();
+            }
+            ueEmail.execCommand('insertHtml', emailHtmlStr); 
+        })
+    }
+
+    var ueMemo;
+
+
+    function memoData(){
+        if(productOffer.offerType == "CIIC Offer"){
+
+            if(productOffer.sex == "男" || productOffer.sex == "Male"){
+                $(".genderMemo").html(productOffer.enfirstname + " " + productOffer.enlastname + "先生")
+            }else {
+                $(".genderMemo").html(productOffer.enfirstname + " " + productOffer.enlastname + "女士") 
+            }
+        }else {
+            $(".genderMemo").html(productOffer.enfirstname + " " + productOffer.enlastname) 
+        }
+        
+        $(".MobilizitionCoMemo").html(productOffer.MobilizationCo)
+        $(".positionNameMemo").html(productOffer.positionName)
+        $(".NewNmanagerMemo").html(productOffer.NewNmanager[0].name)
+        $(".mobilizitionLimitMemo").html(productOffer.mobilizationLimit)
+        $(".mobilizitionStartDateMemo").html(productOffer.mobilizationStartDate?zhDate(productOffer.mobilizationStartDate):"")
+        $(".mobilizitionEndDateMemo").html(productOffer.MobilizationEndDate?zhDate(productOffer.MobilizationEndDate):"")
+        $(".mobilizationSiteMemo").html(productOffer.mobilizationSite.name?productOffer.mobilizationSite.name.split("-")[0]:"")
+        $(".socialSecurityFundPalaceMemo").html(productOffer.socialSecurityFundPalace.name?productOffer.socialSecurityFundPalace.name.split("-")[0]:"")
+        if(productOffer.familyCompany != "Accompany"){
+            $(".memoFamilyCompany").remove();
+        }
+        $(".familyCompanyMemo").html(productOffer.familyCompany) 
+        if(productOffer.LivingAllowance != "Yes,a fix amount"){
+            $(".memoLivingAllowance").remove();
+        }else {
+            $(".liveAllowanceMemo").html(productOffer.liveAllowance)
+        }
+        if(productOffer.ZhuWaiJinTie != "Yes,a fix amount"){
+            $(".memoZhuWaiJinTie").remove();
+        }else {
+            $(".residentAllowanceMemo").html(productOffer.residentAllowance)
+            $(".settleInAllowanceMemo").html(productOffer.settleInAllowance)
+        }
+        if(productOffer.ZhuFangBuTie == "Yes,a fix amount"){
+            $(".housingSubsidyStandardMemo").html(productOffer.housingSubsidyStandard + "元/月")
+        }
+    }
+    
+    if(productOffer.needMemo){
+        $("#memoTip").removeClass('hide');
+        $("#memoHtmlBox").load("memo.html",function(){
+            ueMemo = UE.getEditor('containerMemo');
+            ueMemo.ready(function() {
+                ueMemo.setHeight(400);
+                if(productOffer.memoHtml &&　productOffer.isHistroy){
+                    needMemoHtmlStr = productOffer.memoHtml;
+                }else {
+                    memoData()
+                    needMemoHtmlStr = $("#memoHtmlBox").html();
+                }
+                ueMemo.execCommand('insertHtml', needMemoHtmlStr); 
+            })
+        });
+    }else {
+        $(".ueditorMemoBox").addClass("hide")
+    }
+
+    ue.ready(function() {
+        ue.setHeight(400);
+        if(productOffer.pdfContent != "" && productOffer.pdfContent != "null" && productOffer.pdfContent != undefined &&　productOffer.isHistroy ){
+            ue.execCommand('insertHtml', productOffer.pdfContent);
+            
+        }else {
+            offerDataChange()
+            ue.execCommand('insertHtml', zhOffer.innerHTML); 
+        }
+        emailShow();
+        
+        $("#btnSure").click(function(){  // create offer中的submit
+            $(".comFireOutBox").removeClass('hide');
+        })
+        $("#popupBtnSure").click(function(){ //弹出框的confirm
+            updateAll(2)
+        })
+        $("#popupBtnCancel").click(function(){ //弹出框的cancel
+            $(".comFireOutBox").addClass('hide')
+        })
+        $("#btnStaging").click(function(){ // create offer中的save
+            updateAll(1)
+           
+        });
+        const getParam =  function ( mid, onHash=false ){
+            const regExp = new RegExp("(^|&)" + mid + "=([^&]*)(&|$)");
+            const handle = opt => top.window.location[ opt ].substr(1).match( regExp );
+            const r = handle( 'search' ) || ( onHash && handle( 'hash' ) ) || null;
+            if ( r != null ) 
+                return decodeURIComponent( r[2] );
+            return null;
+        }
+
+        function updateAll(actionType){
+            var subjectName = "";
+            var realNameName = "";
+            if(productOffer.offerType == "CIIC Offer"){
+                if( localStorage.getItem('locale') === 'zh' ){
+                    subjectName = productOffer.enfirstname + " " + productOffer.enlastname;
+                }else{
+                    subjectName = productOffer.enlastname + " " + productOffer.enfirstname;
+                }
+                // subjectName = productOffer.enfirstname + " " + productOffer.enlastname + "的任命书";
+                realNameName = productOffer.enfirstname + " " + productOffer.enlastname;
+            }else {
+                subjectName = productOffer.enlastname + " " + productOffer.enfirstname;
+                realNameName = productOffer.enlastname + " " + productOffer.enfirstname;
+            }
+            var needMemoContent;
+            if(productOffer.needMemo){
+                needMemoContent = ueMemo.getContent()
+            }else {
+                needMemoContent = ""; 
+            }
+            
+            var dataStr = {
+                htmlStr: ue.getContent(),//offer内容
+                email: productOffer.staffEmail,//邮箱
+                subject: subjectName, //邮箱标题
+                content: ueEmail.getContent(),//邮箱内容
+                memoHtml: needMemoContent,//备忘录内容
+                realName: realNameName,//名字
+                mobile: productOffer.staffMobile,//手机
+                actionType: actionType,//暂存1 提交2
+                copyTo: $("#emailAddInp").val(),//抄送邮箱
+                filePath: filePathGet,//附件地址
+                objectId: productOffer.objectId,
+            }
+
+
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                beforeSend: function(request) {
+                        request.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+                        request.setRequestHeader("Authorization", token);
+                    },
+                url: sendUrl + "/api/faurecia/generate_offer",
+                data: JSON.stringify(dataStr),
+                success: function(data){
+                    if( data.errcode == 0){
+                        if(actionType == 1){
+                            $("#msgMain").html("保存成功！");
+                        }else {
+                            // $("#msgMain").html(data.errmsg); 
+                            window.parent.parent.open(pdfUrl +"/shared/success","_self");
+                        }
+                        msgShow();
+                        $(".comFireOutBox").addClass('hide')
+                        $("#offerSendAttachmentDown")[0].href = pdfUrl + data.data.pdfPath;
+                        $("#offerSendAttachmentDown1")[0].href = pdfUrl + data.data.memoPath;
+                        $("#offerSendAttachmentDown").removeClass("hide");
+                        $("#offerSendAttachmentDown1").removeClass("hide");
+                        // productPDF( actionType );
+                    }else {
+                        $("#msgMain").html(data.errmsg);
+                        msgShow();
+                    }
+                }
+            });
+            
+        }
+
+        $("#btnBack").click(function(){
+            var iframeParent = window.parent.document.getElementsByTagName("iframe");
+            var iframeAddOffer = window.parent.parent.document.getElementsByTagName("iframe")
+            
+            iframeAddOffer[0].style.top = "-100px";
+            iframeAddOffer[0].style.width = "0px";
+            iframeAddOffer[0].style.height = "0px";
+            iframeParent[0].src = "";
+            // localStorage.setItem('productOffer', '');
+            // localStorage.setItem('offerHtmlStr',"") 
+            // localStorage.setItem('offerEmailStr',"")
+            // window.open(window.parent.location.href,"_self")
+            
+        })
+    })
+    function msgShow(){
+        $("#msgBox").removeClass("hide");
+        setTimeout(function(){
+            $("#msgBox").addClass("hide");
+        },1000)
+    }
+    
+</script>
+
+</body>
+</html>
