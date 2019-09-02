@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .btnBox {
+          width: 100%;
+          height: 32px;
+          margin-bottom: 30px;
+      }
+      .btnSure {
+          background: #008cff;
+          padding: 3px 14px;
+          border-radius: 4px;
+          float: right;
+          cursor: pointer;
+          margin-right: 20px;
+          color: #FFF;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- http://47.106.77.226/custom/risk_assess_entrust.html -->
+    <div class="btnBox">
+      <div class="btnSure print">打印</div>
+      <div class="btnSure back">返回</div>
+    </div>
+    <table
+      id="table"
+      border="1px"
+      cellspacing="0"
+      width="800px"
+      height="300px"
+      align="center"
+    >
+      <caption>
+        餐饮食品安全风险评估服务委托单
+      </caption>
+      <tbody>
+        <tr>
+          <td rowspan="11">委托单位填写</td>
+          <td>被检验单位</td>
+          <td width="150px" class="examinedOrg"></td>
+          <td>委托检验时间</td>
+          <td width="150px" class="examinedDate"></td>
+        </tr>
+        <tr>
+          <td>地址</td>
+          <td width="150px" class="examinedAddr"></td>
+          <td>邮编</td>
+          <td width="150px" class="examinedZip"></td>
+        </tr>
+        <tr>
+          <td>联系人</td>
+          <td width="150px" class="examinedContact"></td>
+          <td>邮箱</td>
+          <td width="150px" class="examinedEmail"></td>
+        </tr>
+        <tr>
+          <td>检验项目</td>
+          <td colspan="3" class="checkItems"></td>
+        </tr>
+        <tr>
+          <td>委托单位</td>
+          <td width="150px" class="entrustOrg"></td>
+          <td>邮编</td>
+          <td width="150px" class="entrustZip"></td>
+        </tr>
+        <tr>
+            <td>地址</td>
+            <td colspan="3" class="entrustAddr"></td>
+          </tr>
+        <tr>
+          <td>联系电话</td>
+          <td width="150px" class="entrustMobile"></td>
+          <td>传真</td>
+          <td width="150px" class="entrustFax"></td>
+        </tr>
+        <tr>
+          <td>保密要求</td>
+          <td colspan="3" class="secretClaim">
+            <input type="checkbox" name="" id="one" />报出检验编号即可查询
+            <input type="checkbox" name="" id="two" />结果只可告知委托单位代表
+            <input type="checkbox" name="" id="three" />其他
+          </td>
+        </tr>
+        <tr>
+          <td>报告发送方式</td>
+          <td colspan="3" class="sendWay">
+            <input type="checkbox" name="" id="four" />自取
+            <input type="checkbox" name="" id="five" />邮寄
+            <input type="checkbox" name="" id="six" />其他
+          </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                所填内容我方予以确认，其中检验要求代表了我方的真实意图和期望。我方愿提供必要的合作。所需检验费用由我方支付。
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                委托单位代表签名&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp年&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp月&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp日
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="5">检验单位填写</td>
+            <td>检验时间</td>
+            <td width="150px" class="actualExaminedDate"></td>
+            <td>报告份数</td>
+            <td width="150px" class="reportNum"></td>
+        </tr>
+        <tr>
+            <td>检验依据</td>
+            <td colspan="3" class="examineBasis"></td>
+        </tr>
+        <tr>
+            <td>检验人员</td>
+            <td width="150px" class="inspector"></td>
+            <td>电话</td>
+            <td width="150px" class="inspMobile"></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                我方保证按委托单位的要求开展检验工作，保证出具的检验结果公正、准确，严格为委托单位及被检验单位保密并保护其所有权。
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                技术组主管签字:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp年&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp月&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp日
+            </td>
+        </tr>
+        <tr>
+            <td>双方约定</td>
+            <td colspan="4"></td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+      var Return = document.querySelector('.back')
+      var prints = document.querySelector('.print')
+      var iframeParent = window.parent.document.getElementsByTagName("iframe")[0];
+      Return.addEventListener('click',function () {
+        iframeParent.style.width = 0
+        iframeParent.style.height = 0
+      })
+      prints.addEventListener('click',function () {
+        window.print()
+      })
+      
+    </script>
+  </body>
+</html>

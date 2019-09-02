@@ -1,0 +1,237 @@
+<style>
+  </style>
+
+<section id="toolbar"></section>
+
+<section type="template" id="template">
+<a-row>
+    <a-col>
+        <a-title key="2031564986511457" data-name="风险评估服务委托单" data-name_i18n='{"en":"风险评估服务委托单"}'></a-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-create-by key="creater" data-name="创建人"></a-create-by>
+    </a-col>
+    <a-col>
+        <a-created-time key="createdTime" data-name="创建时间"></a-created-time>
+    </a-col>
+    <a-col>
+        <a-sequence-no key="sequenceNo" data-name="单据号"></a-sequence-no>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-group-title key="2001564986511457" data-name="委托单位填写"></a-group-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="examinedOrg" data-name="被检验单位" data-query-code="examined_org" data-schema-code="examined_org" data-mappings="address:{examinedAddr};contact:{examinedContact};zipCode:{examinedZip};email:{examinedEmail}"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-date key="examinedDate" data-name="委托检验时间"></a-date>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-location key="examinedAddr" data-name="地址"></a-location>
+    </a-col>
+    <a-col>
+        <a-text key="examinedZip" data-name="邮编"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="examinedContact" data-name="联系人"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="examinedEmail" data-name="邮箱"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="checkItems" data-name="检验项目"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-association-form key="entrustOrg" data-name="委托单位" data-query-code="entrust_org" data-schema-code="entrust_org" data-mappings="address:{entrustAddr};zipCode:{entrustZip};contact:{entrustContact};email:{entrustEmail};mobile:{entrustMobile};fax:{entrustFax}"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-text key="entrustZip" data-name="邮编"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-location key="entrustAddr" data-name="地址"></a-location>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="entrustContact" data-name="联系人"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="entrustEmail" data-name="邮箱"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="entrustMobile" data-name="联系电话"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="entrustFax" data-name="传真"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-radio key="secretClaim" data-name="保密要求" data-default-value="报出检验编号即可查询" data-options="报出检验编号即可查询;结果只可告知委托单位代表;其他"></a-radio>
+    </a-col>
+    <a-col>
+        <a-text key="secretDesc" data-name="保密要求描述" data-display-formula="{secretClaim} == '其他'"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-radio key="sendWay" data-name="报告发送方式" data-default-value="自取" data-options="自取;邮寄;其它"></a-radio>
+    </a-col>
+    <a-col>
+        <a-text key="sendDesc" data-name="发送方式描述" data-display-formula="{sendWay} == '其它'"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-description key="2021564987397560" data-name="所填内容我方予以确认，其中检验要求代表了我方的真实意图和期望。我方愿提供必要的合作。所需检验费用由我方支付。"></a-description>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-group-title key="2001564987414407" data-name="检验单位填写"></a-group-title>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-date key="actualExaminedDate" data-name="检验时间"></a-date>
+    </a-col>
+    <a-col>
+        <a-number key="reportNum" data-name="报告份数"></a-number>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-text key="examineBasis" data-name="检验依据"></a-text>
+    </a-col>
+</a-row>
+<a-row>
+    <a-col>
+        <a-user-selector key="inspector" data-name="检验人员" data-dept-visible="user"></a-user-selector>
+    </a-col>
+    <a-col>
+        <a-text key="inspMobile" data-name="电话" data-regexp="/^1[3|4|5|6|7|8|9][0-9]{9}$/" data-regexp-text='{"en":"Please enter a valid mobile phone number","zh":"请输入一个有效手机号码"}'></a-text>
+    </a-col>
+</a-row>
+</section>
+
+<script id="customScript">
+      (function(form){
+          /**
+           * 用户自定义JS区域
+           */
+          /**
+           * 事件绑定，form.on
+           * @param eventType 事件类型
+           * @params function 事件
+           * @param  cover    true, false 是否覆盖root的生命周期 默认不覆盖 
+           */
+          //数据加载后，渲染之前，this为window
+          var iframe = document.createElement('iframe')
+          iframe.id = 'pdf'
+          form.on('onLoad',function(data, dataPermission){
+              console.log(data)
+              let self = this
+              self.actions.push({code:'pdf', text: '打印pdf', visible: true})
+          },'cover');
+          //渲染完成后
+          form.on('onRendered',function(data){});
+          //内置校验完成后，返回false阻止提交
+          form.on('onValidate',function(action,data){});
+          //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+          form.on('onPreAction',function(action,data){});
+          //自定义按钮执行
+          form.on('onCustomAction',function(action,data){
+              console.log(data)
+              if (action.code === "pdf") {
+                 iframe.src = "/custom/risk_assess_entrust.html";
+                 iframe.style.width = "100%";
+                 iframe.style.height = "100%";
+                 iframe.style.background = "#FFF";
+                 iframe.style.top = "0";
+                 iframe.style.left = "0";
+                 iframe.style.zIndex = 9999;
+                 iframe.style.border = "none";
+                 iframe.style.position = "absolute"
+                 document.body.appendChild(iframe)
+              }
+              iframe.contentWindow.onload = function() {
+                  var pdf = iframe.contentWindow.document
+                  var pdf = iframe.contentWindow.document
+                  if(data.secretClaim === '报出检验编号即可查询') {
+                    pdf.querySelector('#one').checked = true
+                  } else if(data.secretClaim === '结果只可告知委托单位代表') {
+                    pdf.querySelector('#two').checked = true
+                  } else {
+                    pdf.querySelector('#three').checked = true
+                  }
+
+                  if(data.sendWay === '自取') {
+                    pdf.querySelector('#four').checked = true
+                  } else if(data.sendWay === '邮寄') {
+                    pdf.querySelector('#five').checked = true
+                  } else {
+                    pdf.querySelector('#six').checked = true
+                  }
+                  pdf.querySelector('.examinedOrg').innerHTML = data.examinedOrg.name
+                  pdf.querySelector('.examinedDate').innerHTML = date(data.examinedDate)
+                  pdf.querySelector('.examinedAddr').innerHTML = data.examinedAddr.address
+                  pdf.querySelector('.examinedZip').innerHTML = data.examinedZip
+                  pdf.querySelector('.examinedContact').innerHTML = data.examinedContact
+                  pdf.querySelector('.examinedEmail').innerHTML = data.examinedEmail
+                  pdf.querySelector('.checkItems').innerHTML = data.checkItems
+                  pdf.querySelector('.entrustOrg').innerHTML = data.entrustOrg.name
+                  pdf.querySelector('.entrustZip').innerHTML = data.entrustZip
+                  pdf.querySelector('.entrustAddr').innerHTML = data.entrustAddr.address
+                  pdf.querySelector('.entrustMobile').innerHTML = data.entrustMobile
+                  pdf.querySelector('.entrustFax').innerHTML = data.entrustFax
+                  // pdf.querySelector('.secretClaim').innerHTML = data.secretClaim //保密要求
+                  // pdf.querySelector('.sendWay').innerHTML = data.sendWay //报告发送方式
+                  pdf.querySelector('.actualExaminedDate').innerHTML = date(data.actualExaminedDate)
+                  pdf.querySelector('.reportNum').innerHTML = data.reportNum
+                  pdf.querySelector('.examineBasis').innerHTML = data.examineBasis
+                  pdf.querySelector('.inspector').innerHTML = data.inspector[0].name
+                  pdf.querySelector('.inspMobile').innerHTML = data.inspMobile
+              }
+              function date(time) {//不传值为现在时间,传值为传的参数
+              if(!time){
+                  var year = String(new Date().getFullYear())
+                  var month = new Date().getMonth() + 1
+                  var Day = String(new Date().getDate())
+                  if(month<10){
+                      month = '0' + month
+                  }
+                  return year + '-' + month + '-' + Day
+              } else {
+                  var year = String(new Date(time).getFullYear())
+                  var month = new Date(time).getMonth() + 1
+                  var Day = String(new Date(time).getDate())
+                  if(month<10){
+                      month = '0' + month
+                  }
+                  return year + '-' + month + '-' + Day
+              }
+          }
+console.log(date());
+          });
+          //操作完成后执行
+          form.on('onActionDone',function(action,data,httpRes){});
+      })
+  </script>
