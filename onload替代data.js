@@ -7,14 +7,11 @@ form.on(
     let idCard = queryParam.idCard;
     let userPhone = queryParam.userPhone;
     const param = {
-      /* userPhone: userPhone,
-          idCard: idCard,
-          code: '1212' */
       userPhone: "18668173937",
       idCard: "340621199505065613",
       code: "1212"
     };
-    return axios.post("/api/education/selectByIdAndPhone", param).then(res => {
+    return axios.post("/api/education/selectByIdAndPhone", param).then(res => {   //返回一个promise覆盖data
       if (res.errcode === 0) {
         if (res.data.length == 0) {
           _this.user_phone.value = userPhone; //手机号
@@ -30,7 +27,7 @@ form.on(
       } else if (res.errcode === 5002) {
         _this.$confirm({ title: "提示", content: res.errmsg });
       }
-      return data;
+      return data; //必须要返回
     });
   },
   "cover"

@@ -1,0 +1,26 @@
+{
+  "name": "aozhe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "onload替代data.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zyz1609062132/yunsu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zyz1609062132/yunsu/issues"
+  },
+  "homepage": "https://github.com/zyz1609062132/yunsu#readme",
+  "devDependencies": {
+    "h3-antd-vue": "^1.1.48"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.4.0-beta.0"
+  }
+}

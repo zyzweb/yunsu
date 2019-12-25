@@ -3,9 +3,9 @@ node_modules/
 dist/
 npm-debug.log
 .idea/
-test.html
-test.js
-test.json
+test*.html
+test*.json
 10002068@dingding-dev.apk
 dingtalk-dev-4.5.15.apk
 later.js
+test*.js

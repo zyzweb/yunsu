@@ -1,0 +1,733 @@
+<style>
+    .saveBtn {
+        flex: 1;
+        flex-grow: 1;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .fileElem {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+        opacity: 0;
+    }
+    .fileBoxDiv {
+        width: 1rem;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 100%;
+    }
+    .camera {
+        width: 100%;
+        position: relative;
+    }
+    #family textarea {
+        min-height: 25px!important;
+    }
+    #idcard,#cardNumber {
+        position: relative;
+    }
+    @media (max-device-width: 1000px) {
+        
+        .h3-field-layout-h-label .h3-field-label-title {
+            max-width: 3rem;
+            word-break: inherit;
+            text-align: left;
+            margin-right: 0.25rem;
+        }
+        #educationSon .field__label {
+            text-align: left;
+        }
+        .h3-upload-list-photo-item .h3-upload-uploader {
+            left: 0px;
+        }
+        /* .h-icon-all-plus-o:before {
+            content: "\E9BC";
+        } */
+    } 
+  </style>
+  
+  <section id="toolbar"></section>
+  
+  <section type="template" id="template">
+  <a-row>
+    <a-col>
+        <a-title key="2031561081780009" data-name="Employee Information"></a-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-group-title key="2001561081780009" data-name="基本信息"></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-text key="chineseName" data-name="中文姓名"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="englishFirstName" data-name="姓"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="EnglishName" data-name="名"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-text key="englishLastName" data-name="英文名"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="tell" data-name="手机号码"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="email" data-name="邮箱"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-date key="firstWorkTime" data-name="首次参加工作时间"></a-date>
+    </a-col>
+    <a-col>
+        <a-dropdown key="IdType" data-name="证件类型" data-options="身份证identity card;护照passport" data-empty-value="please select"></a-dropdown>
+    </a-col>
+    <a-col>
+        <a-text key="idcard" data-name="证件号"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-date key="birthday" data-name="出生日期"></a-date>
+    </a-col>
+    <a-col>
+        <a-dropdown key="sex" data-name="性别" data-default-value="男male" data-options="男male;女female" data-empty-value="please select"></a-dropdown>
+    </a-col>
+    <a-col>
+        <a-association-form key="nationality" data-name="国籍" data-query-code="fjy_country" data-schema-code="fjy_country" data-select-mode="dropdown"></a-association-form>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-dropdown key="Marriage" data-name="婚姻状况" data-default-value="已婚 Married" data-options="已婚 Married;未婚 Single;丧偶 Widowed;离异 Divorced;其他 Other" data-empty-value="please select"></a-dropdown>
+    </a-col>
+    <a-col>
+        <a-dropdown key="appearance" data-name="政治面貌" data-options="中共党员;共青团员;民主党派;群众" data-empty-value="please select"></a-dropdown>
+    </a-col>
+    <a-col>
+        <a-text key="democraticPartyName" data-name="民主党派" data-display-formula="{appearance} == '民主党派'" data-required-formula="{appearance} == '民主党派'" data-default-value=""></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-dropdown key="bankCard" data-name="银行卡" data-default-value="公司代办" data-options="公司代办;自己办理;自有银行卡" data-empty-value="please select"></a-dropdown>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-text key="cardNumber" data-name="银行卡号" data-display-formula="{bankCard} == '自有银行卡'"></a-text>
+    </a-col>
+    <a-col>
+        <a-association-form key="bank" data-name="银行卡开户行" data-display-formula="{bankCard} == '自有银行卡'" data-schema-code="fjy_bank" data-select-mode="dropdown"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-association-form key="bankcity" data-name="银行卡开卡城市" data-display-formula="{bankCard} == '自有银行卡'" data-schema-code="fjy_city" data-select-mode="dropdown"></a-association-form>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-association-form key="local" data-name="户口所在地" data-query-code="fjy_city" data-schema-code="fjy_city" data-select-mode="dropdown"></a-association-form>
+    </a-col>
+    <a-col>
+        <a-dropdown key="household" data-name="户籍类别" data-options="城镇户口 Urban Hukou;农村户口 Rural Hukou;农村居民 Rural Resident Hukou;集体户口 Collective Hukou;其他，请填写 Other，please key in" data-empty-value="please select"></a-dropdown>
+    </a-col>
+    <a-col>
+        <a-text key="home" data-name="户籍地址"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-text key="adress" data-name="居住地地址"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="codeOfHome" data-name="户籍邮编"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="codeOfAdess" data-name="居住地邮编"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-dropdown key="education" data-name="学历" data-options="高中 High School;大专 Academy;本科 Bachelor;硕士 Master;博士 Doctor;其它 Other" data-empty-value="please select"></a-dropdown>
+    </a-col>
+    <a-col>
+        <a-text key="educationNew" data-name="学历" data-display-formula="{education} == '其它 Other'" data-required-formula="{education} == '其它 Other'"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="title" data-name="专业职称"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-group-title key="2001561083143470" data-name="社保公积金情况"></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-dropdown key="archives" data-name="档案所在机构" data-default-value="户口所在地" data-options="户口所在地;市区人才中心;其他人才中心;高校;其他" data-empty-value="please select"></a-dropdown>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-dropdown key="endowmentInsurance" data-name="养老保险情况" data-default-value="曾在上海缴纳过社保" data-options="曾在上海缴纳过社保;未在上海缴纳过社保" data-empty-value="please select"></a-dropdown>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-dropdown key="accumulation" data-name="公积金情况" data-default-value="新建" data-options="新建;原单位转出;封存中心;补充公积金" data-empty-value="please select"></a-dropdown>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-text key="accumulationCard" data-name="公积金账号"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-text key="accumulationCardNew" data-name="补充公积金账号"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-group-title key="2001562845232895" data-name="家庭成员"></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-sheet key="family" data-name="家庭成员" data-rows="4">
+            <a-columns>
+                <a-text key="relation" width="150" data-name="关系" data-style=""></a-text>
+                <a-text key="familyName" width="150" data-name="姓名"></a-text>
+                <a-date key="familyBrithday" width="200" data-name="生日"></a-date>
+                <a-association-form key="familyCountry" width="200" data-name="国籍" data-query-code="fjy_country" data-schema-code="fjy_country"></a-association-form>
+                <a-text key="familyCompany" width="150" data-name="工作单位"></a-text>
+                <a-text key="familyTel" width="150" data-name="电话"></a-text>
+                <a-radio key="isEmergencyContact" width="200" data-name="是否紧急联系人" data-default-value="N" data-options="Y;N"></a-radio>
+            </a-columns>
+        </a-sheet>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-text key="urgentPersonName" data-name="紧急联系人姓名"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="urgentrealtion" data-name="紧急联系人关系"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-text key="urgentTel" data-name="紧急联系人手机号"></a-text>
+    </a-col>
+    <a-col>
+        <a-text key="urgentAdress" data-name="紧急联系人居住地址"></a-text>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-group-title key="2001562845740224" data-name="教育背景"></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-sheet key="educationSon" data-name="从高中到目前" data-rows="5">
+            <a-columns>
+                <a-date key="startTimeOfEdutation" width="200" data-name="始于"></a-date>
+                <a-date key="endTimeOfEducation" width="200" data-name="止于"></a-date>
+                <a-dropdown key="education" width="150" data-name="学历程度" data-options="bachelor's degree;master's degree;doctor's degree;High school or others;college's degree" data-empty-value="please select"></a-dropdown>
+                <a-association-form key="schoolName" width="200" data-name="学校" data-query-code="fjy_school" data-schema-code="fjy_school" data-select-mode="dropdown"></a-association-form>
+                <a-text key="schName" width="150" data-name="学校" data-default-value=""></a-text>
+                <a-association-form key="major" width="200" data-name="专业" data-query-code="fjy_discipline" data-schema-code="fjy_discipline"></a-association-form>
+            </a-columns>
+        </a-sheet>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-group-title key="2001562846267342" data-name="工作经历"></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-sheet key="startTimeofWork" data-name="从首次就业到目前" data-rows="1">
+            <a-columns>
+                <a-date key="startTimeOfWork" width="200" data-name="始于"></a-date>
+                <a-date key="endTimeOfWork" width="200" data-name="止于"></a-date>
+                <a-text key="company" width="150" data-name="公司名称"></a-text>
+                <a-text key="position" width="150" data-name="职位"></a-text>
+            </a-columns>
+        </a-sheet>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-textarea key="hobby" data-name="爱好"></a-textarea>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-textarea key="Introduce" data-name="自我介绍" data-name_i18n='{"en":"Slef-introduce"}'></a-textarea>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="photo" data-name="生活照" data-required-formula="{chineseName} != ''" data-limit="10M"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-group-title key="2001567433630631" data-name="证件信息"></a-group-title>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="idCardfront" data-name="身份证正面"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="idCardback" data-name="身份证反面"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="passport1" data-name="护照"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="bankcard1" data-name="银行卡"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="diploma" data-name="学位证书"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-attachment key="CertificateofEducation" data-name="毕业证" data-required-formula="{chineseName} != ''" data-limit="10M"></a-attachment>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="Leavingcertificate" data-name="离职证明/劳动手册"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="Residencepermit" data-name="居住证"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="Householdregistration" data-name="户口本首页及本人页"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="BirthCertificate" data-name="员工子女出生证明"></a-image>
+    </a-col>
+  </a-row>
+  <a-row>
+    <a-col>
+        <a-image key="Photos2" data-name="1张1寸照片"></a-image>
+    </a-col>
+  </a-row>
+  </section>
+  
+  <script id="customScript">
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger' && ua.indexOf("iphone") > -1){
+        window.addEventListener('focusout', () => {
+            window.scrollTo(0, document.documentElement.clientHeight); 
+        });
+    }
+    debugger
+    (function(form){
+        /**
+         * 用户自定义JS区域
+         */
+        /**
+         * 事件绑定，form.on
+         * @param eventType 事件类型
+         * @params function 事件
+         * @param  cover    true, false 是否覆盖root的生命周期 默认不覆盖 
+         */
+        var hostUrl = window.location.href.indexOf("/mobile/")>-1?window.config.trnasHost:window.config.portalHost;
+        window.onhashchange=function(){
+            window.location.href = hostUrl + "/mobile/#/offerSure?type=2"
+        }
+        var isMobile = window.location.href.indexOf("/mobile/")>-1;
+        var sendUrl = window.config.apiHost;
+        if(window.location.href.indexOf("&mobile=") == -1 || window.location.href.indexOf("&verificationCode=") == -1){
+            window.location.href = hostUrl + "/mobile/#/offerSure?type=2"
+        }
+        let fileElem;
+        function fileElemCreate(){
+            let fileCardDiv = document.createElement("div");
+            fileCardDiv.className = "fileBoxDiv";
+            fileCardDiv.id = "fileCardDiv";
+            fileCardDiv.style.display = "none";
+            fileCardDiv.innerHTML = '<input type="file" class="fileElem" id="fileElemCard" accept="image/*">'+
+                            '<img src="'+hostUrl+'/camera.png" class="camera">'
+            document.getElementById("idcard").append(fileCardDiv)
+            let fileBankDiv = document.createElement("div");
+            fileBankDiv.className = "fileBoxDiv";
+            fileBankDiv.id = "fileBankDiv";
+            fileBankDiv.style.display = "none";
+            fileBankDiv.innerHTML = '<input type="file" class="fileElem" id="fileElemBank" accept="image/*">'+
+                            '<img src="'+hostUrl+'/camera.png" class="camera">'
+            document.getElementById("cardNumber").append(fileBankDiv)
+        }
+        
+        var mobileGet = window.location.href.split("&mobile=")[1].split("&")[0]
+        var codeGet = window.location.href.split("&verificationCode=")[1].split("&")[0]
+        var dataTransferType = {family:"family", educationSon:"educationSon", startTimeofWork:"startTimeofWork"}
+        // var fileTransferType = {"photo":"photo","Attachment1562843337584":"Attachment1562843337584",
+        //                         "ShenFenZhengFanMian","ShenFenZhengFanMian","passport1":"passport1",
+        //                         "bankcard1":"bankcard1","Diploma":"Diploma","CertificateofEducation":"CertificateofEducation",
+        //                         "Leavingcertificate":"Leavingcertificate","Residencepermit":"Residencepermit",
+        //                         "Householdregistration":"Householdregistration","BirthCertificate":"BirthCertificate",
+        //                         "Photos2":"Photos2",}
+        var fileTransferType = ["photo","Attachment1562843337584","ShenFenZhengFanMian","passport1","bankcard1","Diploma","CertificateofEducation","Leavingcertificate","Residencepermit","Householdregistration","BirthCertificate","Photos2"]
+        var fillFirst = ["englishFirstName","EnglishName","englishLastName"];
+        var fillFirstJson = {"englishFirstName": "lastName","EnglishName": "firstName","englishLastName": "englishName"};
+        //数据加载后，渲染之前，this为window
+        form.on('onLoad',function(data, dataPermission){
+            this.actions.forEach((item,index)=>{
+                if(item.code == "submit"){
+                    item.text = "submit"
+                }
+            })
+            this.actions.push({"code": "save","disabled": false,"loading": false,"text": "save","visible": true})
+            let _me = this;
+  
+            return new Promise((resolve,reject)=>{
+                var xhr = new XMLHttpRequest();            
+                xhr.open('GET', sendUrl + "/api/faurecia/verifySmsCode?mobile="+mobileGet+"&code="+codeGet, false);
+                    xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200 || xhr.status == 304) { 
+                        let resData = JSON.parse(xhr.responseText).data
+                        let saveedData;
+                        if(!resData.mainInfo && !resData.subInfo){
+                            resolve(data);
+                            return
+                        }
+                        if(resData.mainInfo){
+                            saveedData = resData.mainInfo.data;
+                            for(let key in saveedData){
+                                if(!dataTransferType[key]){
+                                    if(fileTransferType.indexOf(key) > -1){
+                                        const files = saveedData[key];
+                                        if (files && Array.isArray(files)) {
+                                            let filesDataSet = [];
+                                            files.forEach((item,index)=>{
+                                                filesDataSet.push({
+                                                    uid: item.refId,
+                                                    name: item.name,
+                                                    status: 2,
+                                                    size: item.fileSize,
+                                                    response: {
+                                                        data: item
+                                                    }
+                                                })
+                                            })
+                                            data[key] = filesDataSet
+                                        }
+                                    }else {
+                                        if(fillFirst.indexOf(key) > -1){
+                                            data[key] = saveedData[fillFirstJson[key]]
+                                        }else {
+                                           data[key] = saveedData[key] 
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            for(let i=0;i<saveedData.family.length;i++){
+                                if(saveedData.family[i].id){
+                                    delete saveedData.family[i].id
+                                }
+                                saveedData.family[i].familyBrithday = new Date(saveedData.family[i].familyBrithday)
+                            }
+                            data["family"] = saveedData.family;
+                            for(let i=0;i<saveedData.educationSon.length;i++){
+                                if(saveedData.educationSon[i].id){
+                                    delete saveedData.educationSon[i].id
+                                }
+                                let startTime = saveedData.educationSon[i].startTimeOfEdutation;
+                                saveedData.educationSon[i].startTimeOfEdutation = startTime?new Date(startTime):null;
+                                let endTime = saveedData.educationSon[i].endTimeOfEducation;
+                                saveedData.educationSon[i].endTimeOfEducation = endTime?new Date(endTime):null;
+                                
+                            }
+                            data["educationSon"] = saveedData.educationSon;
+                            for(let i=0;i<saveedData.startTimeofWork.length;i++){
+                                if(saveedData.startTimeofWork[i].id){
+                                    delete saveedData.startTimeofWork[i].id
+                                }
+                                // debugger
+                                let startTimeWork = saveedData.startTimeofWork[i].startTimeOfWork;
+                                saveedData.startTimeofWork[i].startTimeOfWork = startTimeWork?new Date(startTimeWork):null;
+                                let endTimeWork = saveedData.startTimeofWork[i].endTimeOfWork;
+                                saveedData.startTimeofWork[i].endTimeOfWork = endTimeWork?new Date(endTimeWork):null;
+                                console.log(new Date(endTimeWork))
+                            }
+                            data["startTimeofWork"] = saveedData.startTimeofWork;
+                            
+                        }else {
+                            saveedData = resData.subInfo.data;
+                            data.chineseName = saveedData.realName;
+                            data.englishFirstName = saveedData.enlastname;
+                            data.EnglishName = saveedData.enfirstname;
+                            data.englishLastName = saveedData.NameEN;
+                            data.email = saveedData.staffEmail;
+                        }
+                        
+                        resolve(data);
+                    }
+                };
+                xhr.send();
+            });
+        },'cover');
+        //渲染完成后
+        form.on('onRendered',function(data){
+            var _this = this; 
+            let IdOrBnak = "Id";
+            if(isMobile){
+                fileElemCreate();
+                let h3FieldPlaceholder = document.getElementsByClassName("h3-field-placeholder");
+                for(let i=0;i<h3FieldPlaceholder.length;i++){
+                    if(i<4){
+                        h3FieldPlaceholder[i].innerHTML = "please select"
+                    }else {
+                        h3FieldPlaceholder[i].innerHTML = "upload"
+                    }
+                }
+                document.getElementById("fileElemCard").addEventListener("change",function(){
+                    IdOrBnak = "Id"
+                    fileElemUpdata(document.getElementById("fileElemCard"));
+                })
+                document.getElementById("fileElemBank").addEventListener("change",function(){
+                    IdOrBnak = "Bank"
+                    fileElemUpdata(document.getElementById("fileElemBank"));
+                })
+                if(this.IdType.value == "身份证identity card"){
+                    document.getElementById("fileCardDiv").style.display = "block"
+                }else {
+                    document.getElementById("fileCardDiv").style.display = "none"
+                }
+                if(this.bankCard.value == "自有银行卡"){
+                    document.getElementById("fileBankDiv").style.display = "block"
+                }else {
+                    document.getElementById("fileBankDiv").style.display = "none"
+                }
+            }
+  
+            
+            
+            
+            function fileElemUpdata(elem){
+                let me = elem;
+                var image = elem.files[0];
+                //如果大于250kb
+                var quality = 0.7;  // 默认图片质量为0.7
+                if(elem.files[0].size/1024 > 257){ 
+                    quality = 0.4
+                } 
+                var reader = new FileReader(); //实例化文件读取对象
+                reader.readAsDataURL(image); //将文件读取为 DataURL,也就是base64编码
+                reader.onload = function(ev) { //文件读取成功完成时触发
+                    var dataURL = ev.target.result; //获得文件读取成功后的DataURL,也就是base64编码
+                    var img = new Image();
+                    img.src = dataURL; //将DataURL码赋值给img标签
+                    img.onload = function(){
+                    var that = this;
+                    // 默认按比例压缩
+                    var w = 300,
+                    // h = that.height,
+                    scale = img.width / img.height;
+                    var h = w/scale;
+                    //生成canvas
+                    var canvas = document.createElement('canvas');
+                    canvas.width = w;
+                    canvas.height = h;
+                    var ctx = canvas.getContext('2d');
+                    ctx.drawImage(that, 0, 0, w, h);
+                    // quality值越小，所绘制出的图像越模糊
+                    var dataImgURL = canvas.toDataURL('image/jpeg', quality); //转换为bese64
+                        let cardUrl = ""
+                        var imgDataBase = {};
+                        if(IdOrBnak == "Bank"){
+                            cardUrl = "/api/faurecia/bank_card_read"
+                            imgDataBase = {"imageBase64": dataImgURL.split(";base64,")[1]}
+                        }else {
+                            cardUrl = "/api/faurecia/id_card_read";
+                            imgDataBase = {"imageBase64": dataImgURL}
+                        }
+                        var xhrImg = new XMLHttpRequest();    
+                        xhrImg.open('post', sendUrl + cardUrl, true);
+                        xhrImg.onreadystatechange = function() {
+                            if (xhrImg.readyState == 4 && xhrImg.status == 200 || xhrImg.status == 304) { 
+                                let resPhone = JSON.parse(xhrImg.responseText);
+                                if(resPhone.errcode == 0){
+                                    if(IdOrBnak == "Bank"){
+                                        _this.cardNumber.value = resPhone.data
+                                    }else if(IdOrBnak == "Id"){
+                                        _this.idcard.value = resPhone.data.idNo;
+                                        _this.birthday.value = new Date(resPhone.data.year+"-"+resPhone.data.month+"-"+resPhone.data.day);
+                                        _this.sex.value = resPhone.data.sex=="男"?"男male":"女female";
+                                    }
+                                }
+                            }
+                        };
+                        xhrImg.setRequestHeader("Content-Type","application/json;charset=UTF-8")        
+                        xhrImg.send(JSON.stringify(imgDataBase)); //发送post请求,转换图像的base64
+                    }
+                }
+            }
+  
+            this.tell.value = mobileGet;
+            let _me = this;
+            
+            this.family.getColumnValueChange('isEmergencyContact').subscribe((changed,index)=>{
+                let familyJson = [];
+                familyJson = this.family.value;
+                let familyIndex = "a";
+                familyJson.forEach((item,index)=>{
+                    familyJson[index].isEmergencyContact = "N"
+                })
+                changed.value.forEach((item,index)=>{
+                    if(item != changed.oldValue[index] && item == "Y"){
+                        familyIndex = index
+                    }
+                })
+                if(familyIndex != "a"){
+                    familyJson[familyIndex].isEmergencyContact = "Y"
+                    this.urgentPersonName.value = this.family.value[familyIndex].familyName;
+                    this.urgentTel.value = this.family.value[familyIndex].familyTel;
+                    this.urgentrealtion.value = this.family.value[familyIndex].relation;
+                    this.family.value = familyJson;
+                }
+            })
+            debugger
+            ["IdType","bankCard"].forEach((item,index)=>{
+                this[item].valueChange.subscribe((changed)=>{
+                    debugger
+                    if(isMobile){
+                        if(changed.value == "身份证identity card" && item == "IdType"){
+                            document.getElementById("fileCardDiv").style.display = "block"
+                        }else{
+                            document.getElementById("fileCardDiv").style.display = "none"
+                        }
+                        if(changed.value == "自有银行卡" && item == "bankCard"){
+                            document.getElementById("fileBankDiv").style.display = "block"
+                        }else{
+                            document.getElementById("fileBankDiv").style.display = "none"
+                        }
+                    }
+                })
+            })
+            debugger
+            let familyInitData = this.family.value;
+            let educationSonInitData = this.educationSon.value;
+            console.log(data)
+            if(!data.sequenceStatus){
+                familyInitData[0].relation = familyInitData[0].relation == ""?"父亲":familyInitData[0].relation
+                familyInitData[1].relation = familyInitData[1].relation == ""?"母亲":familyInitData[1].relation
+                familyInitData[2].relation = familyInitData[2].relation == ""?"配偶":familyInitData[2].relation
+                familyInitData[3].relation = familyInitData[3].relation == ""?"子女":familyInitData[3].relation
+  
+                educationSonInitData[0].education = educationSonInitData[0].education == "please select"?"bachelor's degree":educationSonInitData[0].education
+                educationSonInitData[1].education = educationSonInitData[1].education == "please select"?"master's degree":educationSonInitData[1].education
+                educationSonInitData[2].education = educationSonInitData[2].education == "please select"?"doctor's degree":educationSonInitData[2].education
+                educationSonInitData[3].education = educationSonInitData[3].education == "please select"?"High school or others":educationSonInitData[3].education
+                educationSonInitData[4].education = educationSonInitData[4].education == "please select"?"High school or others":educationSonInitData[4].education
+                this.educationSon.value = educationSonInitData;
+                this.family.value = familyInitData;
+            }
+            
+            this.educationSon.getColumnValueChange("education").subscribe((changed)=>{
+                changed.value.forEach((item,index)=>{
+                    if(item == "High school or others" && item != changed.oldValue[index]){
+                        this.educationSon.children[index].children.schoolName.display = false;
+                        this.educationSon.children[index].children.schName.display = true;
+                    }
+                    if(item && item != "High school or others" && item!= "please select" && item != changed.oldValue[index]){
+                        this.educationSon.children[index].children.schoolName.display = true;
+                        this.educationSon.children[index].children.schName.display = false;
+                    }
+                })
+            })
+            
+            let renderTime = null;
+            if(isMobile){
+                renderTime = setInterval(function(){
+                    let sheetRowActions = document.getElementsByClassName("sheet-row__actions");
+                    if(document.getElementById("tell").getElementsByTagName("textarea")){
+                        document.getElementById("tell").getElementsByTagName("textarea")[0].disabled = true;
+                        document.getElementById("chineseName").getElementsByTagName("textarea")[0].disabled = true;
+                        document.getElementById("englishFirstName").getElementsByTagName("textarea")[0].disabled = true;
+                        document.getElementById("englishLastName").getElementsByTagName("textarea")[0].disabled = true;
+                        document.getElementById("EnglishName").getElementsByTagName("textarea")[0].disabled = true;
+                        document.getElementById("email").getElementsByTagName("textarea")[0].disabled = true;
+                        sheetRowActions[0].getElementsByClassName("sheet-row__actions__item")[2].style.display = "none";
+                        sheetRowActions[2].getElementsByClassName("sheet-row__actions__item")[2].style.display = "none";
+                        sheetRowActions[4].getElementsByClassName("sheet-row__actions__item")[2].style.display = "none";
+                        clearInterval(renderTime)
+                        renderTime = null;
+                    }else if(document.getElementById("tell").getElementsByTagName("input")){
+                        document.getElementById("tell").getElementsByTagName("input")[0].disabled = true;
+                        document.getElementById("chineseName").getElementsByTagName("input")[0].disabled = true;
+                        document.getElementById("englishFirstName").getElementsByTagName("input")[0].disabled = true;
+                        document.getElementById("englishLastName").getElementsByTagName("input")[0].disabled = true;
+                        document.getElementById("EnglishName").getElementsByTagName("input")[0].disabled = true;
+                        document.getElementById("email").getElementsByTagName("input")[0].disabled = true;
+                        sheetRowActions[0].getElementsByClassName("sheet-row__actions__item")[2].style.display = "none";
+                        sheetRowActions[2].getElementsByClassName("sheet-row__actions__item")[2].style.display = "none";
+                        sheetRowActions[4].getElementsByClassName("sheet-row__actions__item")[2].style.display = "none";
+                        clearInterval(renderTime)
+                        renderTime = null;
+                    }
+                },500)
+            }
+            this.Photos2.valueChange.subscribe((changed)=>{
+                console.log(changed)
+            })
+        });
+        //内置校验完成后，返回false阻止提交
+        form.on('onValidate',function(action,data){});
+        //操作前（包含自定义按钮）执行，返回false阻止按钮操作
+        form.on('onPreAction',function(action,data){
+            
+        });
+        //自定义按钮执行
+        form.on('onCustomAction',function(action,data){});
+        //操作完成后执行
+        form.on('onActionDone',function(action,data,httpRes){
+            
+            if(action.code == "submit"){
+                window.location.href = hostUrl+"/mobile/#/noTokenSuccess"
+            }else {
+                document.getElementsByClassName("h3-toast h3-toast-mask")[0].style.display = "flex"
+                setTimeout(function(){
+                    document.getElementsByClassName("h3-toast h3-toast-mask")[0].style.display = "none"
+                },1500)
+                return false
+            }
+        });
+    })
+  </script>

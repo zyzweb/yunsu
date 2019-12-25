@@ -233,7 +233,7 @@
       });
 
       //上传文件后
-      input.addEventListener("change", function() {
+      input.addEventListener("change", function() { //触发change事件表示已经选择文件了
         var formData = new FormData(document.getElementById("form_file"));
         formData.append("file", formData);
 

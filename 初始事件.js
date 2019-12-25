@@ -15,7 +15,7 @@
     //内置校验完成后，返回false阻止提交
     form.on('onValidate',function(action,data){});
     //操作前（包含自定义按钮）执行，返回false阻止按钮操作
-    form.on('onPreAction',function(action,data){});
+    form.on('onPreAction',function(action,data){});  //拿不到流程状态
     //自定义按钮执行
     form.on('onCustomAction',function(action,data){});
     //操作完成后执行

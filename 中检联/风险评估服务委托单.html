@@ -202,7 +202,6 @@
       }
       iframe.contentWindow.onload = function() {
         var pdf = iframe.contentWindow.document;
-        var pdf = iframe.contentWindow.document;
         if (data.secretClaim === "报出检验编号即可查询") {
           pdf.querySelector("#one").checked = true;
         } else if (data.secretClaim === "结果只可告知委托单位代表") {
@@ -230,8 +229,6 @@
         pdf.querySelector(".entrustAddr").innerHTML = data.entrustAddr.address;
         pdf.querySelector(".entrustMobile").innerHTML = data.entrustMobile;
         pdf.querySelector(".entrustFax").innerHTML = data.entrustFax;
-        // pdf.querySelector('.secretClaim').innerHTML = data.secretClaim //保密要求
-        // pdf.querySelector('.sendWay').innerHTML = data.sendWay //报告发送方式
         pdf.querySelector(".actualExaminedDate").innerHTML = date(data.actualExaminedDate);
         pdf.querySelector(".reportNum").innerHTML = data.reportNum;
         pdf.querySelector(".examineBasis").innerHTML = data.examineBasis;
